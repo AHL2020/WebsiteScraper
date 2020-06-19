@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'AWS
+
+  Sample SAM Template for AWS
+
+  '
+Globals:
+  Function:
+    Timeout: 20
+Resources:
+  WebsiteScraperFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: WebsiteScraperFunction
+      Handler: lambda.App::handleRequest
+      Runtime: java8
+      MemorySize: 512
+      Environment:
+        Variables:
+          PARAM1: VALUE
+      Events:
+        WebsiteScraper:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
+Outputs:
+  WebsiteScraperApi:
+    Description: API Gateway endpoint URL for Prod stage for Website Scraper function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
+  WebsiteScraperFunction:
+    Description: Website Scraper Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - WebsiteScraperFunction
+      - Arn
+  WebsiteScraperFunctionIamRole:
+    Description: Implicit IAM Role created for Website Scraper function
+    Value:
+      Fn::GetAtt:
+      - WebsiteScraperFunctionRole
+      - Arn

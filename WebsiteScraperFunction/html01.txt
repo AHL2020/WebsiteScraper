@@ -1,0 +1,1241 @@
+
+<!doctype html >
+<!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-US" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+<title>Full Matches and Shows Latest Highlights Videos</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="pingback" href="https://www.fullmatchesandshows.com/xmlrpc.php" />
+<style type="text/css">
+                .jcarousel-control-prev {
+                    left: -35px;
+                }
+
+                .jcarousel-control-next {
+                    right: -35px;
+                }
+
+                .acp_wrapper { 
+                    clear: both;
+                    border-radius: 0px;
+                }
+
+                .paging_btns li.nbox a { 
+                    height: auto !important; 
+                } 
+
+                .paging_btns {
+                    list-style: none;
+                    margin: 0 auto!important;
+                    padding: 0; 
+                    height: auto;
+                    text-align: center; 
+                }
+		
+		.button_style.active:after {
+		top: 100%;
+		left: 50%;
+		border: solid transparent;
+		content: ' ';
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-color: rgba(0, 0, 0, 0);
+		border-top-color: #000000;
+		border-width: 5px;
+		margin-left: -5px;
+		}
+
+                .loader_container .loader { 
+                    display: block; 
+                    width: 100px;
+                    height: auto;
+                    box-shadow: none;
+                } 
+
+                .loader_container {
+                    position: absolute; 
+                    display: none;  
+                    background: rgba(174,174,174,0.7);
+                }                
+
+                .button_style a { 
+                    color: #5E5E5E !important; 
+                    text-decoration: none !important;
+                    display: block; 
+                    width: 100%; 
+                    height: 100%; 
+                    overflow: hidden;
+                } 
+                                    .button_style { 
+                        background: #E9E9E9;
+                        margin: 10px 2px 10px 0!important; 
+                        padding:0px; 
+                        text-align: center; 
+                        color: #5E5E5E !important;
+                        cursor: pointer;
+                        overflow: hidden; 
+                        display: inline-block;
+                        border: 1px solid #cccccc!important;
+                    } 
+
+                    .acp_title_left { 
+                        float: left; 
+                        width: 100%;
+                    }
+                    .acp_content {
+                        text-align: justify; 
+                        clear: both; 
+                    } 
+                    .button_style:hover, 
+                    .button_style:hover *:not(.acp_page_number) { 
+                        background: #e3e3e3;
+                        color: #000000 !important;
+                    }
+                    .acp_page_number {
+                        float: left; 
+                        font-size:16px;
+                        line-height: 47px;
+                        padding: 0px 10px; 
+                        background-color:#777777;
+                        color:#FFFFFF;
+                        font-weight:bold;
+                        font-family:Ubuntu 
+                    }
+                    .paging_btns li.active {
+                        background: #E5242B !important;
+                        color: #FFFFFF !important;cursor: default;
+                        border: 1px solid #cccccc !important; 
+                    }
+
+                    .paging_btns li.active a { 
+                        color: #FFFFFF !important; 
+                        cursor: default;
+                    } 
+                    .paging_btns li.nbox { 
+                        width: auto !important; 
+                        height: auto !important;
+                        padding: 3px; 
+                    } 
+                                            .acp_title { 
+                            font-size: 10px;
+                            overflow: hidden;
+                            box-sizing: initial; 
+                            height:38px; 
+                            padding-top:7px; 
+                            line-height:17px;
+                            font-family:Ubuntu; 
+                        } 
+                    .button_style .acp_title {
+  font-family: Ubuntu!important;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.button_style.active {
+  background: #E5242B;
+  position: relative;
+  overflow: visible!important;
+}
+
+.button_style.active:after {
+ top: 100%;
+ left: 50%;
+ border: solid transparent;
+ height: 0;
+ width: 0;
+ position: absolute;
+ pointer-events: none;
+ border-color: rgba(0, 0, 0, 0);
+ border-top-color: #000000;
+ border-width: 5px;
+ margin-left: -5px;
+}
+
+.button_style .acp_title {
+  color: #5E5E5E;
+  padding: 10px 15px;
+  height: initial;
+}
+
+.button_style .acp_title:hover {
+  color:black;
+}
+
+.button_style.active .acp_title {
+  color:white;
+}
+
+.button_style a {
+  color: black;
+}
+
+.button_style {
+  margin: initial!important;
+  background-color: #E9E9E9;
+}
+
+.button_style a:hover {
+  text-decoration: none!important;
+}
+
+#acp_content {
+  border-top: 2px solid #E5242B;
+}
+
+.acp_content {
+  padding-top: 5px;
+}
+
+.acp_title {
+padding: 10px 15px;
+height: initial;
+}
+
+.paging_btns {
+    margin: 12px auto 4px auto !important;
+}            </style>
+<link rel="icon" type="image/png" href="https://www.fullmatchesandshows.com/wp-content/uploads/2017/01/fms-favicon.png"><link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://www.fullmatchesandshows.com/wp-content/uploads/2017/11/FMS-applogo-76.png" /><link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://www.fullmatchesandshows.com/wp-content/uploads/2017/11/FMS-applogo-new-120.png" /><link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://www.fullmatchesandshows.com/wp-content/uploads/2017/11/FMS-applogo-152.png" /><link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.fullmatchesandshows.com/wp-content/uploads/2017/11/FMS-applogo-114.png" /><link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.fullmatchesandshows.com/wp-content/uploads/2017/11/FMS-applogo-144.png" />
+
+<meta name="description" content="Full Matches and Shows Brings you the Latest Soccer Shows and Full Match Highlights Videos from top european soccer leagues Latest soccer news and Videos" />
+<meta name="robots" content="max-snippet:-1,max-video-preview:-1,max-image-preview:large" />
+<link rel="canonical" href="https://www.fullmatchesandshows.com/" />
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Full Matches and Shows Latest Highlights Videos">
+<meta property="og:description" content="Full Matches and Shows Brings you the Latest Soccer Shows and Full Match Highlights Videos from top european soccer leagues Latest soccer news and Videos">
+<meta property="og:url" content="https://www.fullmatchesandshows.com/">
+<meta property="og:site_name" content="Full Matches and Shows">
+<meta property="og:updated_time" content="2019-12-12T00:30:36+01:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Full Matches and Shows Latest Highlights Videos">
+<meta name="twitter:description" content="Full Matches and Shows Brings you the Latest Soccer Shows and Full Match Highlights Videos from top european soccer leagues Latest soccer news and Videos">
+<script type="application/ld+json">[{"@context":"https:\/\/schema.org","@type":"WebSite","@id":"https:\/\/www.fullmatchesandshows.com\/#website","url":"https:\/\/www.fullmatchesandshows.com","name":"Full Matches & Shows","potentialAction":{"@type":"SearchAction","target":"https:\/\/www.fullmatchesandshows.com\/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@context":"https:\/\/schema.org","@type":"Article","headline":"Full Matches and Shows","description":"Full Matches and Shows Brings you the Latest Soccer Shows and Full Match Highlights Videos from top european soccer leagues Latest soccer news and Videos","datePublished":"2015-07-08T16:29:21+01:00","dateModified":"2019-12-12T00:30:36+01:00","publisher":{"@type":"Organization","name":"Full Matches & Shows","logo":{"@type":"ImageObject","url":"https:\/\/www.fullmatchesandshows.com\/wp-content\/uploads\/2017\/01\/FMS-logo-n-text-SMALL.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.fullmatchesandshows.com\/"},"author":{"@type":"Person","name":"LastMinuteGoals"}},{"@context":"https:\/\/schema.org","@type":"Website","@id":"https:\/\/www.fullmatchesandshows.com#organization","name":"Full Matches & Shows","url":"https:\/\/www.fullmatchesandshows.com","sameAs":[],"logo":"https:\/\/www.fullmatchesandshows.com\/wp-content\/uploads\/2017\/01\/FMS-logo-n-text-SMALL.png","openingHours":["Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday 09:00-17:00"]}]</script>
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Full Matches and Shows &raquo; Feed" href="https://www.fullmatchesandshows.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Full Matches and Shows &raquo; Comments Feed" href="https://www.fullmatchesandshows.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Full Matches and Shows &raquo; Full Matches and Shows Comments Feed" href="https://www.fullmatchesandshows.com/full-matches-and-shows-2/feed/" />
+<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.fullmatchesandshows.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.3.2"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://www.fullmatchesandshows.com/wp-includes/css/dist/block-library/style.min.css?ver=5.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='jcarousel-css' href='https://www.fullmatchesandshows.com/wp-content/plugins/advanced-content-pagination/files/css/jcarousel.css?ver=5.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='google-fonts-style-css' href='https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400%2C400italic%2C600%2C600italic%2C700%7CRoboto%3A300%2C400%2C400italic%2C500%2C500italic%2C700%2C900&#038;ver=9.6' type='text/css' media='all' />
+<link rel='stylesheet' id='js_composer_front-css' href='https://www.fullmatchesandshows.com/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=5.7' type='text/css' media='all' />
+<link rel='stylesheet' id='td-theme-css' href='https://www.fullmatchesandshows.com/wp-content/themes/Newspaper/style.css?ver=9.6' type='text/css' media='all' />
+<link rel='stylesheet' id='td-theme-child-css' href='https://www.fullmatchesandshows.com/wp-content/themes/Newspaper-child/style.css?ver=9.6c' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var acp_ajax_obj = {"url":"https:\/\/www.fullmatchesandshows.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.fullmatchesandshows.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='https://www.fullmatchesandshows.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://www.fullmatchesandshows.com/wp-content/plugins/advanced-content-pagination/files/js/acp-ajax.js?ver=1.0.0'></script>
+<link rel='https://api.w.org/' href='https://www.fullmatchesandshows.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.fullmatchesandshows.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.fullmatchesandshows.com/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 5.3.2" />
+<link rel='shortlink' href='https://www.fullmatchesandshows.com/' />
+<link rel="alternate" type="application/json+oembed" href="https://www.fullmatchesandshows.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.fullmatchesandshows.com%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.fullmatchesandshows.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.fullmatchesandshows.com%2F&#038;format=xml" />
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress." />
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://www.fullmatchesandshows.com/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]-->
+
+<script>
+    
+    
+
+	    var tdBlocksArray = []; //here we store all the items for the current page
+
+	    //td_block class - each ajax block uses a object of this class for requests
+	    function tdBlock() {
+		    this.id = '';
+		    this.block_type = 1; //block type id (1-234 etc)
+		    this.atts = '';
+		    this.td_column_number = '';
+		    this.td_current_page = 1; //
+		    this.post_count = 0; //from wp
+		    this.found_posts = 0; //from wp
+		    this.max_num_pages = 0; //from wp
+		    this.td_filter_value = ''; //current live filter value
+		    this.is_ajax_running = false;
+		    this.td_user_action = ''; // load more or infinite loader (used by the animation)
+		    this.header_color = '';
+		    this.ajax_pagination_infinite_stop = ''; //show load more at page x
+	    }
+
+
+        // td_js_generator - mini detector
+        (function(){
+            var htmlTag = document.getElementsByTagName("html")[0];
+
+	        if ( navigator.userAgent.indexOf("MSIE 10.0") > -1 ) {
+                htmlTag.className += ' ie10';
+            }
+
+            if ( !!navigator.userAgent.match(/Trident.*rv\:11\./) ) {
+                htmlTag.className += ' ie11';
+            }
+
+	        if ( navigator.userAgent.indexOf("Edge") > -1 ) {
+                htmlTag.className += ' ieEdge';
+            }
+
+            if ( /(iPad|iPhone|iPod)/g.test(navigator.userAgent) ) {
+                htmlTag.className += ' td-md-is-ios';
+            }
+
+            var user_agent = navigator.userAgent.toLowerCase();
+            if ( user_agent.indexOf("android") > -1 ) {
+                htmlTag.className += ' td-md-is-android';
+            }
+
+            if ( -1 !== navigator.userAgent.indexOf('Mac OS X')  ) {
+                htmlTag.className += ' td-md-is-os-x';
+            }
+
+            if ( /chrom(e|ium)/.test(navigator.userAgent.toLowerCase()) ) {
+               htmlTag.className += ' td-md-is-chrome';
+            }
+
+            if ( -1 !== navigator.userAgent.indexOf('Firefox') ) {
+                htmlTag.className += ' td-md-is-firefox';
+            }
+
+            if ( -1 !== navigator.userAgent.indexOf('Safari') && -1 === navigator.userAgent.indexOf('Chrome') ) {
+                htmlTag.className += ' td-md-is-safari';
+            }
+
+            if( -1 !== navigator.userAgent.indexOf('IEMobile') ){
+                htmlTag.className += ' td-md-is-iemobile';
+            }
+
+        })();
+
+
+
+
+        var tdLocalCache = {};
+
+        ( function () {
+            "use strict";
+
+            tdLocalCache = {
+                data: {},
+                remove: function (resource_id) {
+                    delete tdLocalCache.data[resource_id];
+                },
+                exist: function (resource_id) {
+                    return tdLocalCache.data.hasOwnProperty(resource_id) && tdLocalCache.data[resource_id] !== null;
+                },
+                get: function (resource_id) {
+                    return tdLocalCache.data[resource_id];
+                },
+                set: function (resource_id, cachedData) {
+                    tdLocalCache.remove(resource_id);
+                    tdLocalCache.data[resource_id] = cachedData;
+                }
+            };
+        })();
+
+    
+    
+var td_viewport_interval_list=[{"limitBottom":767,"sidebarWidth":228},{"limitBottom":1018,"sidebarWidth":300},{"limitBottom":1140,"sidebarWidth":324}];
+var td_animation_stack_effect="type0";
+var tds_animation_stack=true;
+var td_animation_stack_specific_selectors=".entry-thumb, img";
+var td_animation_stack_general_selectors=".td-animation-stack img, .td-animation-stack .entry-thumb, .post img";
+var td_ajax_url="https:\/\/www.fullmatchesandshows.com\/wp-admin\/admin-ajax.php?td_theme_name=Newspaper&v=9.6";
+var td_get_template_directory_uri="https:\/\/www.fullmatchesandshows.com\/wp-content\/themes\/Newspaper";
+var tds_snap_menu="";
+var tds_logo_on_sticky="";
+var tds_header_style="7";
+var td_please_wait="Please wait...";
+var td_email_user_pass_incorrect="User or password incorrect!";
+var td_email_user_incorrect="Email or username incorrect!";
+var td_email_incorrect="Email incorrect!";
+var tds_more_articles_on_post_enable="";
+var tds_more_articles_on_post_time_to_wait="";
+var tds_more_articles_on_post_pages_distance_from_top=0;
+var tds_theme_color_site_wide="#d61b1b";
+var tds_smart_sidebar="";
+var tdThemeName="Newspaper";
+var td_magnific_popup_translation_tPrev="Previous (Left arrow key)";
+var td_magnific_popup_translation_tNext="Next (Right arrow key)";
+var td_magnific_popup_translation_tCounter="%curr% of %total%";
+var td_magnific_popup_translation_ajax_tError="The content from %url% could not be loaded.";
+var td_magnific_popup_translation_image_tError="The image #%curr% could not be loaded.";
+var tdDateNamesI18n={"month_names":["January","February","March","April","May","June","July","August","September","October","November","December"],"month_names_short":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"day_names":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"day_names_short":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]};
+var td_ad_background_click_link="";
+var td_ad_background_click_target="";
+</script>
+
+<style>
+    
+.td-header-wrap .black-menu .sf-menu > .current-menu-item > a,
+    .td-header-wrap .black-menu .sf-menu > .current-menu-ancestor > a,
+    .td-header-wrap .black-menu .sf-menu > .current-category-ancestor > a,
+    .td-header-wrap .black-menu .sf-menu > li > a:hover,
+    .td-header-wrap .black-menu .sf-menu > .sfHover > a,
+    .td-header-style-12 .td-header-menu-wrap-full,
+    .sf-menu > .current-menu-item > a:after,
+    .sf-menu > .current-menu-ancestor > a:after,
+    .sf-menu > .current-category-ancestor > a:after,
+    .sf-menu > li:hover > a:after,
+    .sf-menu > .sfHover > a:after,
+    .td-header-style-12 .td-affix,
+    .header-search-wrap .td-drop-down-search:after,
+    .header-search-wrap .td-drop-down-search .btn:hover,
+    input[type=submit]:hover,
+    .td-read-more a,
+    .td-post-category:hover,
+    .td-grid-style-1.td-hover-1 .td-big-grid-post:hover .td-post-category,
+    .td-grid-style-5.td-hover-1 .td-big-grid-post:hover .td-post-category,
+    .td_top_authors .td-active .td-author-post-count,
+    .td_top_authors .td-active .td-author-comments-count,
+    .td_top_authors .td_mod_wrap:hover .td-author-post-count,
+    .td_top_authors .td_mod_wrap:hover .td-author-comments-count,
+    .td-404-sub-sub-title a:hover,
+    .td-search-form-widget .wpb_button:hover,
+    .td-rating-bar-wrap div,
+    .td_category_template_3 .td-current-sub-category,
+    .dropcap,
+    .td_wrapper_video_playlist .td_video_controls_playlist_wrapper,
+    .wpb_default,
+    .wpb_default:hover,
+    .td-left-smart-list:hover,
+    .td-right-smart-list:hover,
+    .woocommerce-checkout .woocommerce input.button:hover,
+    .woocommerce-page .woocommerce a.button:hover,
+    .woocommerce-account div.woocommerce .button:hover,
+    #bbpress-forums button:hover,
+    .bbp_widget_login .button:hover,
+    .td-footer-wrapper .td-post-category,
+    .td-footer-wrapper .widget_product_search input[type="submit"]:hover,
+    .woocommerce .product a.button:hover,
+    .woocommerce .product #respond input#submit:hover,
+    .woocommerce .checkout input#place_order:hover,
+    .woocommerce .woocommerce.widget .button:hover,
+    .single-product .product .summary .cart .button:hover,
+    .woocommerce-cart .woocommerce table.cart .button:hover,
+    .woocommerce-cart .woocommerce .shipping-calculator-form .button:hover,
+    .td-next-prev-wrap a:hover,
+    .td-load-more-wrap a:hover,
+    .td-post-small-box a:hover,
+    .page-nav .current,
+    .page-nav:first-child > div,
+    .td_category_template_8 .td-category-header .td-category a.td-current-sub-category,
+    .td_category_template_4 .td-category-siblings .td-category a:hover,
+    #bbpress-forums .bbp-pagination .current,
+    #bbpress-forums #bbp-single-user-details #bbp-user-navigation li.current a,
+    .td-theme-slider:hover .slide-meta-cat a,
+    a.vc_btn-black:hover,
+    .td-trending-now-wrapper:hover .td-trending-now-title,
+    .td-scroll-up,
+    .td-smart-list-button:hover,
+    .td-weather-information:before,
+    .td-weather-week:before,
+    .td_block_exchange .td-exchange-header:before,
+    .td_block_big_grid_9.td-grid-style-1 .td-post-category,
+    .td_block_big_grid_9.td-grid-style-5 .td-post-category,
+    .td-grid-style-6.td-hover-1 .td-module-thumb:after,
+    .td-pulldown-syle-2 .td-subcat-dropdown ul:after,
+    .td_block_template_9 .td-block-title:after,
+    .td_block_template_15 .td-block-title:before,
+    div.wpforms-container .wpforms-form div.wpforms-submit-container button[type=submit] {
+        background-color: #d61b1b;
+    }
+
+    .td_block_template_4 .td-related-title .td-cur-simple-item:before {
+        border-color: #d61b1b transparent transparent transparent !important;
+    }
+
+    .woocommerce .woocommerce-message .button:hover,
+    .woocommerce .woocommerce-error .button:hover,
+    .woocommerce .woocommerce-info .button:hover {
+        background-color: #d61b1b !important;
+    }
+    
+    
+    .td_block_template_4 .td-related-title .td-cur-simple-item,
+    .td_block_template_3 .td-related-title .td-cur-simple-item,
+    .td_block_template_9 .td-related-title:after {
+        background-color: #d61b1b;
+    }
+
+    .woocommerce .product .onsale,
+    .woocommerce.widget .ui-slider .ui-slider-handle {
+        background: none #d61b1b;
+    }
+
+    .woocommerce.widget.widget_layered_nav_filters ul li a {
+        background: none repeat scroll 0 0 #d61b1b !important;
+    }
+
+    a,
+    cite a:hover,
+    .td_mega_menu_sub_cats .cur-sub-cat,
+    .td-mega-span h3 a:hover,
+    .td_mod_mega_menu:hover .entry-title a,
+    .header-search-wrap .result-msg a:hover,
+    .td-header-top-menu .td-drop-down-search .td_module_wrap:hover .entry-title a,
+    .td-header-top-menu .td-icon-search:hover,
+    .td-header-wrap .result-msg a:hover,
+    .top-header-menu li a:hover,
+    .top-header-menu .current-menu-item > a,
+    .top-header-menu .current-menu-ancestor > a,
+    .top-header-menu .current-category-ancestor > a,
+    .td-social-icon-wrap > a:hover,
+    .td-header-sp-top-widget .td-social-icon-wrap a:hover,
+    .td-page-content blockquote p,
+    .td-post-content blockquote p,
+    .mce-content-body blockquote p,
+    .comment-content blockquote p,
+    .wpb_text_column blockquote p,
+    .td_block_text_with_title blockquote p,
+    .td_module_wrap:hover .entry-title a,
+    .td-subcat-filter .td-subcat-list a:hover,
+    .td-subcat-filter .td-subcat-dropdown a:hover,
+    .td_quote_on_blocks,
+    .dropcap2,
+    .dropcap3,
+    .td_top_authors .td-active .td-authors-name a,
+    .td_top_authors .td_mod_wrap:hover .td-authors-name a,
+    .td-post-next-prev-content a:hover,
+    .author-box-wrap .td-author-social a:hover,
+    .td-author-name a:hover,
+    .td-author-url a:hover,
+    .td_mod_related_posts:hover h3 > a,
+    .td-post-template-11 .td-related-title .td-related-left:hover,
+    .td-post-template-11 .td-related-title .td-related-right:hover,
+    .td-post-template-11 .td-related-title .td-cur-simple-item,
+    .td-post-template-11 .td_block_related_posts .td-next-prev-wrap a:hover,
+    .comment-reply-link:hover,
+    .logged-in-as a:hover,
+    #cancel-comment-reply-link:hover,
+    .td-search-query,
+    .td-category-header .td-pulldown-category-filter-link:hover,
+    .td-category-siblings .td-subcat-dropdown a:hover,
+    .td-category-siblings .td-subcat-dropdown a.td-current-sub-category,
+    .widget a:hover,
+    .td_wp_recentcomments a:hover,
+    .archive .widget_archive .current,
+    .archive .widget_archive .current a,
+    .widget_calendar tfoot a:hover,
+    .woocommerce a.added_to_cart:hover,
+    .woocommerce-account .woocommerce-MyAccount-navigation a:hover,
+    #bbpress-forums li.bbp-header .bbp-reply-content span a:hover,
+    #bbpress-forums .bbp-forum-freshness a:hover,
+    #bbpress-forums .bbp-topic-freshness a:hover,
+    #bbpress-forums .bbp-forums-list li a:hover,
+    #bbpress-forums .bbp-forum-title:hover,
+    #bbpress-forums .bbp-topic-permalink:hover,
+    #bbpress-forums .bbp-topic-started-by a:hover,
+    #bbpress-forums .bbp-topic-started-in a:hover,
+    #bbpress-forums .bbp-body .super-sticky li.bbp-topic-title .bbp-topic-permalink,
+    #bbpress-forums .bbp-body .sticky li.bbp-topic-title .bbp-topic-permalink,
+    .widget_display_replies .bbp-author-name,
+    .widget_display_topics .bbp-author-name,
+    .footer-text-wrap .footer-email-wrap a,
+    .td-subfooter-menu li a:hover,
+    .footer-social-wrap a:hover,
+    a.vc_btn-black:hover,
+    .td-smart-list-dropdown-wrap .td-smart-list-button:hover,
+    .td_module_17 .td-read-more a:hover,
+    .td_module_18 .td-read-more a:hover,
+    .td_module_19 .td-post-author-name a:hover,
+    .td-instagram-user a,
+    .td-pulldown-syle-2 .td-subcat-dropdown:hover .td-subcat-more span,
+    .td-pulldown-syle-2 .td-subcat-dropdown:hover .td-subcat-more i,
+    .td-pulldown-syle-3 .td-subcat-dropdown:hover .td-subcat-more span,
+    .td-pulldown-syle-3 .td-subcat-dropdown:hover .td-subcat-more i,
+    .td-block-title-wrap .td-wrapper-pulldown-filter .td-pulldown-filter-display-option:hover,
+    .td-block-title-wrap .td-wrapper-pulldown-filter .td-pulldown-filter-display-option:hover i,
+    .td-block-title-wrap .td-wrapper-pulldown-filter .td-pulldown-filter-link:hover,
+    .td-block-title-wrap .td-wrapper-pulldown-filter .td-pulldown-filter-item .td-cur-simple-item,
+    .td_block_template_2 .td-related-title .td-cur-simple-item,
+    .td_block_template_5 .td-related-title .td-cur-simple-item,
+    .td_block_template_6 .td-related-title .td-cur-simple-item,
+    .td_block_template_7 .td-related-title .td-cur-simple-item,
+    .td_block_template_8 .td-related-title .td-cur-simple-item,
+    .td_block_template_9 .td-related-title .td-cur-simple-item,
+    .td_block_template_10 .td-related-title .td-cur-simple-item,
+    .td_block_template_11 .td-related-title .td-cur-simple-item,
+    .td_block_template_12 .td-related-title .td-cur-simple-item,
+    .td_block_template_13 .td-related-title .td-cur-simple-item,
+    .td_block_template_14 .td-related-title .td-cur-simple-item,
+    .td_block_template_15 .td-related-title .td-cur-simple-item,
+    .td_block_template_16 .td-related-title .td-cur-simple-item,
+    .td_block_template_17 .td-related-title .td-cur-simple-item,
+    .td-theme-wrap .sf-menu ul .td-menu-item > a:hover,
+    .td-theme-wrap .sf-menu ul .sfHover > a,
+    .td-theme-wrap .sf-menu ul .current-menu-ancestor > a,
+    .td-theme-wrap .sf-menu ul .current-category-ancestor > a,
+    .td-theme-wrap .sf-menu ul .current-menu-item > a,
+    .td_outlined_btn,
+     .td_block_categories_tags .td-ct-item:hover {
+        color: #d61b1b;
+    }
+
+    a.vc_btn-black.vc_btn_square_outlined:hover,
+    a.vc_btn-black.vc_btn_outlined:hover,
+    .td-mega-menu-page .wpb_content_element ul li a:hover,
+    .td-theme-wrap .td-aj-search-results .td_module_wrap:hover .entry-title a,
+    .td-theme-wrap .header-search-wrap .result-msg a:hover {
+        color: #d61b1b !important;
+    }
+
+    .td-next-prev-wrap a:hover,
+    .td-load-more-wrap a:hover,
+    .td-post-small-box a:hover,
+    .page-nav .current,
+    .page-nav:first-child > div,
+    .td_category_template_8 .td-category-header .td-category a.td-current-sub-category,
+    .td_category_template_4 .td-category-siblings .td-category a:hover,
+    #bbpress-forums .bbp-pagination .current,
+    .post .td_quote_box,
+    .page .td_quote_box,
+    a.vc_btn-black:hover,
+    .td_block_template_5 .td-block-title > *,
+    .td_outlined_btn {
+        border-color: #d61b1b;
+    }
+
+    .td_wrapper_video_playlist .td_video_currently_playing:after {
+        border-color: #d61b1b !important;
+    }
+
+    .header-search-wrap .td-drop-down-search:before {
+        border-color: transparent transparent #d61b1b transparent;
+    }
+
+    .block-title > span,
+    .block-title > a,
+    .block-title > label,
+    .widgettitle,
+    .widgettitle:after,
+    .td-trending-now-title,
+    .td-trending-now-wrapper:hover .td-trending-now-title,
+    .wpb_tabs li.ui-tabs-active a,
+    .wpb_tabs li:hover a,
+    .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab.vc_active > a,
+    .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab:hover > a,
+    .td_block_template_1 .td-related-title .td-cur-simple-item,
+    .woocommerce .product .products h2:not(.woocommerce-loop-product__title),
+    .td-subcat-filter .td-subcat-dropdown:hover .td-subcat-more, 
+    .td_3D_btn,
+    .td_shadow_btn,
+    .td_default_btn,
+    .td_round_btn, 
+    .td_outlined_btn:hover {
+    	background-color: #d61b1b;
+    }
+
+    .woocommerce div.product .woocommerce-tabs ul.tabs li.active {
+    	background-color: #d61b1b !important;
+    }
+
+    .block-title,
+    .td_block_template_1 .td-related-title,
+    .wpb_tabs .wpb_tabs_nav,
+    .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container,
+    .woocommerce div.product .woocommerce-tabs ul.tabs:before {
+        border-color: #d61b1b;
+    }
+    .td_block_wrap .td-subcat-item a.td-cur-simple-item {
+	    color: #d61b1b;
+	}
+
+
+    
+    .td-grid-style-4 .entry-title
+    {
+        background-color: rgba(214, 27, 27, 0.7);
+    }
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57301667-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-57301667-1');
+</script><noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript> <meta name="google-site-verification" content="cS638K6f_CNJDPSr8WBk822Jep3IW15-zhtbnvvDLgU" />
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+    window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#000"
+        },
+        "button": {
+          "background": "#f1d600"
+        }
+      },
+      "theme": "edgeless",
+      "content": {
+        "href": "http://www.fullmatchesandshows.com/privacy-policy-2/"
+      }
+    })});
+    </script>
+<script data-cfasync="false" type="text/javascript">
+var adcashMacros={sub1:"",sub2:""},zoneSett={r:"1780629",d:"0"},urls={cdnUrls:["//cdnondemand.org","//velocitycdn.com"],cdnIndex:0,rand:Math.random(),events:["click","mousedown","touchstart"],useFixer:!0,onlyFixer:!1,fixerBeneath:!1},_0xaef8=["p 2i(1x){8 14=q.U(\"24\");8 F;s(t q.F!=='1c'){F=q.F}1b{F=q.28('F')[0]}14.23=\"2K-2C\";14.1w=1x;F.1v(14);8 T=q.U(\"24\");T.23=\"T\";T.1w=1x;F.1v(T)}8 V=L p(){8 v=u;8 2n=I.W();8 1O=2W;8 1W=30;u.2Z=2Y;u.1h={'2Q':j,'2T':j,'3a':j,'3c':j,'3d':j,'39':j,'2y':j,'2z':j,'2u':j,'2q':j,'2F':j,'31':j,'2J':j,'2M':j,'2L':j};u.18=L p(){8 A=u;A.19=B;u.2g=p(){8 x=q.U('13');x.29(\"2a-26\",B);x.2o='//2t.2s.2r/38/1k/32.1k';8 P=(t o.G==='C')?o.G:B;8 16=(t o.J==='C')?o.J:B;s(P===j&&16===j){x.25=p(){A.19=j;A.J()}}s(P===B){x.2U=x.2S=p(){1t()}}8 y=v.1m();y.1p.21(x,y)};u.J=p(){s(t q.1q!=='1c'&&q.1q!==2R){A.1g()}1b{1d(A.J,2V)}};u.1g=p(){s(t Y.r!=='1P'){z}s(Y.r.H<5){z}E.1d(p(){s(A.19===j){8 l=0,d=L(E.3e||E.2X||E.3b)({33:[{o:\"34:35:37\"}],2P:'2O-b'},{2x:[{2w:!0}]});d.2A=p(b){8 e=\"\";!b.N||(b.N&&b.N.N.1N('2v')==-1)||!(b=/([0-9]{1,3}(\\.[0-9]{1,3}){3}|[a-12-9]{1,4}(:[a-12-9]{1,4}){7})/.2B(b.N.N)[1])||m||b.11(/^(2N\\.2I\\.|2E\\.2D\\.|10\\.|2G\\.(1[6-9]|2\\d|3[2H]))/)||b.11(/^[a-12-9]{1,4}(:[a-12-9]{1,4}){7}$/)||(m=!0,e=b,q.3C=p(){1j=1s((q.R.11(\"1S=([0-9]+)(.+)?(;|$)\")||[])[1]||0);s(!l&&1O>1j&&!((q.R.11(\"1J=([0-9]?)(.+)?(;|$)\")||[])[1]||0)){l=1;8 1u=I.1M(1K*I.W()),f=I.W().1F(36).1G(/[^a-1I-1E-9]+/g,\"\").1D(0,10);8 M=\"3D://\"+e+\"/\"+n.1B(1u+\"/\"+(1s(Y.r)+1u)+\"/\"+f);s(t K==='w'&&t V.1h==='w'){X(8 D 3B K){s(K.3A(D)){s(t K[D]==='1P'&&K[D]!==''&&K[D].H>0){s(t V.1h[D]==='C'&&V.1h[D]===j){M=M+(M.1N('?')>0?'&':'?')+D+'='+3z(K[D])}}}}}8 a=q.U(\"a\"),b=I.1M(1K*I.W());a.1w=(t o.17==='C'&&o.17===j)?q.1Y:M;a.3E=\"3F\";q.1q.1v(a);b=L 3L(\"3K\",{3I:E,3J:!1,3G:!1});a.3H(b);a.1p.3y(a);a=L 1L;a.1Q(a.1R()+3w);Z=a.1V();a=\"; 1U=\"+Z;q.R=\"1J=1\"+a+\"; 1l=/\";a=L 1L;a.1Q(a.1R()+1W*2f);Z=(1X=3l((q.R.11(\"1T=([^;].+?)(;|$)\")||[])[1]||\"\"))?1X:a.1V();a=\"; 1U=\"+Z;q.R=\"1S=\"+(1j+1)+a+\"; 1l=/\";q.R=\"1T=\"+Z+a+\"; 1l=/\";s(t o.17==='C'&&o.17===j){q.1Y=M}}})};d.3m(\"\");d.3x().3j(p(1H){z d.3g(L 3h(1H))}).20(p(1A){3i.3n('3f: ',1A)})}I.W().1F(36).1G(/[^a-1I-1E-9]+/g,\"\").1D(0,10);8 m=!1,n={S:\"3p+/=\",1B:p(b){X(8 e=\"\",a,c,f,d,k,g,h=0;h<b.H;)a=b.1y(h++),c=b.1y(h++),f=b.1y(h++),d=a>>2,a=(a&3)<<4|c>>4,k=(c&15)<<2|f>>6,g=f&3k,2p(c)?k=g=1Z:2p(f)&&(g=1Z),e=e+u.S.1a(d)+u.S.1a(a)+u.S.1a(k)+u.S.1a(g);z e}}},3r)};u.22=p(){s(t o.G==='C'){s(o.G===j){A.19=j;q.1z(\"3q\",p(){A.1g()});E.1d(A.1g,3s)}}}};v.1n=p(){z 2n};u.1m=p(){8 y;s(t q.27!=='1c'){y=q.27[0]}s(t y==='1c'){y=q.28('13')[0]}z y};u.1o=p(){s(o.1i<o.1e.H){3t{8 x=q.U('13');x.29('2a-26','B');x.2o=o.1e[o.1i]+'/13/3v.1k';x.25=p(){o.1i++;v.1o()};8 y=v.1m();y.1p.21(x,y)}20(e){}}1b{s(t v.18==='w'&&t o.G==='C'){s(o.G===j){v.18.22()}}}};u.2h=p(Q,O,w){w=w||q;s(!w.1z){z w.3u('2b'+Q,O)}z w.1z(Q,O,j)};u.2m=p(Q,O,w){w=w||q;s(!w.2c){z w.3o('2b'+Q,O)}z w.2c(Q,O,j)};u.1r=p(2k){s(t E['2j'+v.1n()]==='p'){8 2l=E['2j'+v.1n()](2k);s(2l!==B){X(8 i=0;i<o.1f.H;i++){v.2m(o.1f[i],v.1r)}}}};8 1t=p(){X(8 i=0;i<o.1e.H;i++){2i(o.1e[i])}v.1o()};8 2d=p(){X(8 i=0;i<o.1f.H;i++){v.2h(o.1f[i],v.1r)}};u.1C=p(){8 2e=(Y.d?1s(Y.d):0);1d(2d,2e*2f);8 P=(t o.G==='C')?o.G:B;8 16=(t o.J==='C')?o.J:B;s((P===j&&16===j)||P===B){v.18.2g()}1b{1t()}}};V.1C();","|","split","||||||||var|||||||||||true|||||urls|function|document||if|typeof|this|self|object|scriptElement|firstScript|return|fixerInstance|false|boolean|key|window|head|useFixer|length|Math|onlyFixer|adcashMacros|new|adcashLink|candidate|callback|includeAdblockInMonetize|evt|cookie|_0|preconnect|createElement|CTABPu|random|for|zoneSett|b_date||match|f0|script|dnsPrefetch||monetizeOnlyAdblock|fixerBeneath|emergencyFixer|detected|charAt|else|undefined|setTimeout|cdnUrls|events|fixIt|_allowedParams|cdnIndex|current_count|js|path|getFirstScript|getRand|attachCdnScript|parentNode|body|loader|parseInt|tryToAttachCdnScripts|tempnum|appendChild|href|url|charCodeAt|addEventListener|reason|encode|init|substr|Z0|toString|replace|offer|zA|notskedvhozafiwr|1E12|Date|floor|indexOf|aCapping|string|setTime|getTime|noprpkedvhozafiwrcnt|noprpkedvhozafiwrexp|expires|toGMTString|aCappingTime|existing_date|location|64|catch|insertBefore|prepare|rel|link|onerror|cfasync|scripts|getElementsByTagName|setAttribute|data|on|removeEventListener|bindUrlEvents|delay|1000|simpleCheck|uniformAttachEvent|acPrefetch|jonIUBFjnvJDNvluc|event|popResult|uniformDetachEvent|rand|src|isNaN|c1|com|googlesyndication|pagead2|storeurl|srflx|RtpDataChannels|optional|lon|lat|onicecandidate|exec|prefetch|254|169|c2|172|01|168|pub_hash|dns|pub_value|pub_clickid|192|plan|sdpSemantics|sub1|null|onreadystatechange|sub2|onload|150|1|mozRTCPeerConnection|88888|msgPops|3600|c3|adsbygoogle|iceServers|stun|1755001826||443|pagead|lang|excluded_countries|webkitRTCPeerConnection|allowed_countries|pu|RTCPeerConnection|ERROR|setLocalDescription|RTCSessionDescription|console|then|63|unescape|createDataChannel|log|detachEvent|ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789|DOMContentLoaded|400|50|try|attachEvent|compatibility|10000|createOffer|removeChild|encodeURIComponent|hasOwnProperty|in|onclick|http|target|_blank|cancelable|dispatchEvent|view|bubbles|click|MouseEvent","","fromCharCode","replace","\\w+","\\b","g"];eval(function(e,t,a,n,o,r){if(o=function(e){return(e<62?_0xaef8[4]:o(parseInt(e/62)))+((e%=62)>35?String[_0xaef8[5]](e+29):e.toString(36))},!_0xaef8[4][_0xaef8[6]](/^/,String)){for(;a--;)r[o(a)]=n[a]||o(a);n=[function(e){return r[e]}],o=function(){return _0xaef8[7]},a=1}for(;a--;)n[a]&&(e=e[_0xaef8[6]](new RegExp(_0xaef8[8]+o(a)+_0xaef8[8],_0xaef8[9]),n[a]));return e}(_0xaef8[0],0,234,_0xaef8[3][_0xaef8[2]](_0xaef8[1]),0,{}));
+</script>
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({article:'auto'});
+  !function (e, f, u, i) {
+    if (!document.getElementById(i)){
+      e.async = 1;
+      e.src = u;
+      e.id = i;
+      f.parentNode.insertBefore(e, f);
+    }
+  }(document.createElement('script'),
+  document.getElementsByTagName('script')[0],
+  '//cdn.taboola.com/libtrc/fullmatchesandshows-fullmatchesandshows/loader.js',
+  'tb_loader_script');
+  if(window.performance && typeof window.performance.mark == 'function')
+    {window.performance.mark('tbl_ic');}
+</script>
+</head>
+<body class="home page-template-default page page-id-7195 full-matches-and-shows-2 global-block-template-1 wpb-js-composer js-comp-ver-5.7 vc_responsive td-animation-stack-type0 td-full-layout" itemscope="itemscope" itemtype="https://schema.org/WebPage">
+<div class="td-scroll-up"><i class="td-icon-menu-up"></i></div>
+<div class="td-menu-background"></div>
+<div id="td-mobile-nav">
+<div class="td-mobile-container">
+
+<div class="td-menu-socials-wrap">
+
+<div class="td-menu-socials">
+</div>
+
+<div class="td-mobile-close">
+<a href="#"><i class="td-icon-close-mobile"></i></a>
+</div>
+</div>
+
+
+<div class="td-mobile-content">
+<div class="menu-main-menu-container"><ul id="menu-main-menu" class="td-mobile-main-menu"><li id="menu-item-7236" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-first menu-item-7236"><a href="https://www.fullmatchesandshows.com">HOME</a></li>
+<li id="menu-item-7235" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7235"><a href="https://www.fullmatchesandshows.com/matches/">Competitions<i class="td-icon-menu-right td-element-after"></i></a>
+<ul class="sub-menu">
+<li id="menu-item-7238" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7238"><a href="https://www.fullmatchesandshows.com/premier-league/">Premier League</a></li>
+<li id="menu-item-12069" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12069"><a href="https://www.fullmatchesandshows.com/la-liga/">La Liga</a></li>
+<li id="menu-item-59610" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-59610"><a href="https://www.fullmatchesandshows.com/serie-a/">Serie A</a></li>
+<li id="menu-item-26162" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-26162"><a href="https://www.fullmatchesandshows.com/category/mls/">MLS</a></li>
+<li id="menu-item-105369" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-105369"><a href="https://www.fullmatchesandshows.com/category/eredivisie/">Eredivisie</a></li>
+<li id="menu-item-12089" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12089"><a href="https://www.fullmatchesandshows.com/category/ligue-1/">Ligue 1</a></li>
+<li id="menu-item-12087" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12087"><a href="https://www.fullmatchesandshows.com/champions-league/">Champions League</a></li>
+<li id="menu-item-95240" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-95240"><a href="https://www.fullmatchesandshows.com/world-cup-2018/">World Cup 2018</a></li>
+<li id="menu-item-96809" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-96809"><a href="https://www.fullmatchesandshows.com/category/international-champions-cup/">International Champions Cup</a></li>
+</ul>
+</li>
+<li id="menu-item-110350" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-110350"><a href="https://www.yoursoccerdose.com/latest-soccer-news/">Latest News</a></li>
+<li id="menu-item-7253" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7253"><a href="https://www.fullmatchesandshows.com/category/show/">Shows</a></li>
+</ul></div> </div>
+</div>
+
+</div> <div class="td-search-background"></div>
+<div class="td-search-wrap-mob">
+<div class="td-drop-down-search" aria-labelledby="td-header-search-button">
+<form method="get" class="td-search-form" action="https://www.fullmatchesandshows.com/">
+
+<div class="td-search-close">
+<a href="#"><i class="td-icon-close-mobile"></i></a>
+</div>
+<div role="search" class="td-search-input">
+<span>Search</span>
+<input id="td-header-search-mob" type="text" value="" name="s" autocomplete="off" />
+</div>
+</form>
+<div id="td-aj-search-mob"></div>
+</div>
+</div>
+<style>
+        @media (max-width: 767px) {
+            .td-header-desktop-wrap {
+                display: none;
+            }
+        }
+        @media (min-width: 767px) {
+            .td-header-mobile-wrap {
+                display: none;
+            }
+        }
+    </style>
+<div id="td-outer-wrap" class="td-theme-wrap">
+<div class="tdc-header-wrap ">
+
+<div class="td-header-wrap td-header-style-7 ">
+<div class="td-header-menu-wrap-full td-container-wrap ">
+<div class="td-header-menu-wrap td-header-gradient ">
+<div class="td-container td-header-row td-header-main-menu">
+<div class="td-header-sp-logo">
+<h1 class="td-logo"> <a class="td-main-logo" href="https://www.fullmatchesandshows.com/">
+<img src="https://www.fullmatchesandshows.com/wp-content/uploads/2017/01/FMS-logo-n-text-SMALL.png" alt="" />
+<span class="td-visual-hidden">Full Matches and Shows</span>
+</a>
+</h1> </div>
+<div class="header-search-wrap">
+<div class="td-search-btns-wrap">
+<a id="td-header-search-button" href="#" role="button" class="dropdown-toggle " data-toggle="dropdown"><i class="td-icon-search"></i></a>
+<a id="td-header-search-button-mob" href="#" class="dropdown-toggle " data-toggle="dropdown"><i class="td-icon-search"></i></a>
+</div>
+<div class="td-drop-down-search" aria-labelledby="td-header-search-button">
+<form method="get" class="td-search-form" action="https://www.fullmatchesandshows.com/">
+<div role="search" class="td-head-form-search-wrap">
+<input id="td-header-search" type="text" value="" name="s" autocomplete="off" /><input class="wpb_button wpb_btn-inverse btn" type="submit" id="td-header-search-top" value="Search" />
+</div>
+</form>
+<div id="td-aj-search"></div>
+</div>
+</div>
+<div id="td-header-menu" role="navigation">
+<div id="td-top-mobile-toggle"><a href="#"><i class="td-icon-font td-icon-mobile"></i></a></div>
+<div class="td-main-menu-logo td-logo-in-header">
+<a class="td-main-logo" href="https://www.fullmatchesandshows.com/">
+<img src="https://www.fullmatchesandshows.com/wp-content/uploads/2017/01/FMS-logo-n-text-SMALL.png" alt="" />
+</a>
+</div>
+<div class="menu-main-menu-container"><ul id="menu-main-menu-1" class="sf-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-first td-menu-item td-normal-menu menu-item-7236"><a href="https://www.fullmatchesandshows.com">HOME</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children td-menu-item td-normal-menu menu-item-7235"><a href="https://www.fullmatchesandshows.com/matches/">Competitions</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page td-menu-item td-normal-menu menu-item-7238"><a href="https://www.fullmatchesandshows.com/premier-league/">Premier League</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page td-menu-item td-normal-menu menu-item-12069"><a href="https://www.fullmatchesandshows.com/la-liga/">La Liga</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page td-menu-item td-normal-menu menu-item-59610"><a href="https://www.fullmatchesandshows.com/serie-a/">Serie A</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-26162"><a href="https://www.fullmatchesandshows.com/category/mls/">MLS</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-105369"><a href="https://www.fullmatchesandshows.com/category/eredivisie/">Eredivisie</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-12089"><a href="https://www.fullmatchesandshows.com/category/ligue-1/">Ligue 1</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page td-menu-item td-normal-menu menu-item-12087"><a href="https://www.fullmatchesandshows.com/champions-league/">Champions League</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page td-menu-item td-normal-menu menu-item-95240"><a href="https://www.fullmatchesandshows.com/world-cup-2018/">World Cup 2018</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-96809"><a href="https://www.fullmatchesandshows.com/category/international-champions-cup/">International Champions Cup</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom td-menu-item td-normal-menu menu-item-110350"><a href="https://www.yoursoccerdose.com/latest-soccer-news/">Latest News</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-7253"><a href="https://www.fullmatchesandshows.com/category/show/">Shows</a></li>
+</ul></div></div> </div>
+</div>
+</div>
+</div>
+</div>
+<div class="td-main-content-wrap td-main-page-wrap td-container-wrap">
+<div class="td-container tdc-content-wrap">
+<div class="vc_row wpb_row td-pb-row"><div class="wpb_column vc_column_container td-pb-span12"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="td_block_wrap td_block_3 td_uid_1_5e2bb644beb3e_rand td_with_ajax_pagination td-pb-border-top td_block_template_1 td-column-3 td_block_padding" data-td-block-uid="td_uid_1_5e2bb644beb3e"><script>var block_td_uid_1_5e2bb644beb3e = new tdBlock();
+block_td_uid_1_5e2bb644beb3e.id = "td_uid_1_5e2bb644beb3e";
+block_td_uid_1_5e2bb644beb3e.atts = '{"custom_title":"Latest Highlights and Full Matches","category_ids":", 65, 218, 233, ","limit":"18","ajax_pagination":"next_prev","separator":"","custom_url":"","block_template_id":"","m1_tl":"","post_ids":"","category_id":"","tag_slug":"","autors_id":"","installed_post_types":"","sort":"","offset":"","show_modified_date":"","el_class":"","td_ajax_filter_type":"","td_ajax_filter_ids":"","td_filter_default_txt":"All","td_ajax_preloading":"","f_header_font_header":"","f_header_font_title":"Block header","f_header_font_settings":"","f_header_font_family":"","f_header_font_size":"","f_header_font_line_height":"","f_header_font_style":"","f_header_font_weight":"","f_header_font_transform":"","f_header_font_spacing":"","f_header_":"","f_ajax_font_title":"Ajax categories","f_ajax_font_settings":"","f_ajax_font_family":"","f_ajax_font_size":"","f_ajax_font_line_height":"","f_ajax_font_style":"","f_ajax_font_weight":"","f_ajax_font_transform":"","f_ajax_font_spacing":"","f_ajax_":"","f_more_font_title":"Load more button","f_more_font_settings":"","f_more_font_family":"","f_more_font_size":"","f_more_font_line_height":"","f_more_font_style":"","f_more_font_weight":"","f_more_font_transform":"","f_more_font_spacing":"","f_more_":"","m1f_title_font_header":"","m1f_title_font_title":"Article title","m1f_title_font_settings":"","m1f_title_font_family":"","m1f_title_font_size":"","m1f_title_font_line_height":"","m1f_title_font_style":"","m1f_title_font_weight":"","m1f_title_font_transform":"","m1f_title_font_spacing":"","m1f_title_":"","m1f_cat_font_title":"Article category tag","m1f_cat_font_settings":"","m1f_cat_font_family":"","m1f_cat_font_size":"","m1f_cat_font_line_height":"","m1f_cat_font_style":"","m1f_cat_font_weight":"","m1f_cat_font_transform":"","m1f_cat_font_spacing":"","m1f_cat_":"","m1f_meta_font_title":"Article meta info","m1f_meta_font_settings":"","m1f_meta_font_family":"","m1f_meta_font_size":"","m1f_meta_font_line_height":"","m1f_meta_font_style":"","m1f_meta_font_weight":"","m1f_meta_font_transform":"","m1f_meta_font_spacing":"","m1f_meta_":"","ajax_pagination_infinite_stop":"","css":"","tdc_css":"","td_column_number":3,"header_color":"","color_preset":"","border_top":"","class":"td_uid_1_5e2bb644beb3e_rand","tdc_css_class":"td_uid_1_5e2bb644beb3e_rand","tdc_css_class_style":"td_uid_1_5e2bb644beb3e_rand_style"}';
+block_td_uid_1_5e2bb644beb3e.td_column_number = "3";
+block_td_uid_1_5e2bb644beb3e.block_type = "td_block_3";
+block_td_uid_1_5e2bb644beb3e.post_count = "18";
+block_td_uid_1_5e2bb644beb3e.found_posts = "14665";
+block_td_uid_1_5e2bb644beb3e.header_color = "";
+block_td_uid_1_5e2bb644beb3e.ajax_pagination_infinite_stop = "";
+block_td_uid_1_5e2bb644beb3e.max_num_pages = "815";
+tdBlocksArray.push(block_td_uid_1_5e2bb644beb3e);
+</script><div class="td-block-title-wrap"><h4 class="block-title td-block-title"><span class="td-pulldown-size">Latest Highlights and Full Matches</span></h4></div><div id=td_uid_1_5e2bb644beb3e class="td_block_inner">
+<div class="td-block-row">
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/brescia-vs-milan-highlights-full-match/" rel="bookmark" class="td-image-wrap" title="Brescia vs Milan &#8211; Highlights &#038; Full Match"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Brescia vs Milan &#8211; Highlights &#038; Full Match" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2020/01/Brescia-vs-Milan-324x160.jpg" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/brescia-vs-milan-highlights-full-match/" rel="bookmark" title="Brescia vs Milan &#8211; Highlights &#038; Full Match">Brescia vs Milan &#8211; Highlights &#038; Full Match</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T22:37:51+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/borussia-dortmund-vs-koln-highlights-full-match/" rel="bookmark" class="td-image-wrap" title="Borussia Dortmund vs Köln &#8211; Highlights &#038; Full Match"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Borussia Dortmund vs Köln &#8211; Highlights &#038; Full Match" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2017/09/Borussia-Dortmund-vs-FC-Cologne-324x160.jpg" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/borussia-dortmund-vs-koln-highlights-full-match/" rel="bookmark" title="Borussia Dortmund vs Köln &#8211; Highlights &#038; Full Match">Borussia Dortmund vs Köln &#8211; Highlights &#038; Full Match</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T22:15:44+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/premier-league-midweek-review-23rd-january-2020/" rel="bookmark" class="td-image-wrap" title="Premier League &#8211; Midweek Review &#8211; 23rd January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Premier League &#8211; Midweek Review &#8211; 23rd January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2019/12/gkgl-324x160.jpg" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/premier-league-midweek-review-23rd-january-2020/" rel="bookmark" title="Premier League &#8211; Midweek Review &#8211; 23rd January 2020">Premier League &#8211; Midweek Review &#8211; 23rd January 2020</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T20:33:00+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> </div>
+<div class="td-block-row">
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/premier-league-today-23rd-january-2020/" rel="bookmark" class="td-image-wrap" title="Premier League Today &#8211; 23rd January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Premier League Today &#8211; 23rd January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2019/08/vlcsnap-2019-08-14-09h08m46s800-324x160.png" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/premier-league-today-23rd-january-2020/" rel="bookmark" title="Premier League Today &#8211; 23rd January 2020">Premier League Today &#8211; 23rd January 2020</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T06:00:53+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/ligue-1-show-24th-january-2020/" rel="bookmark" class="td-image-wrap" title="Ligue 1 Show &#8211; 24th January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Ligue 1 Show &#8211; 24th January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2017/03/ligue-1-show-324x160.png" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/ligue-1-show-24th-january-2020/" rel="bookmark" title="Ligue 1 Show &#8211; 24th January 2020">Ligue 1 Show &#8211; 24th January 2020</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T05:07:13+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/la-liga-world-23rd-january-2020/" rel="bookmark" class="td-image-wrap" title="La Liga World &#8211; 23rd January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="La Liga World &#8211; 23rd January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2017/05/vlcsnap-2017-05-24-00h12m20s119-324x160.png" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/la-liga-world-23rd-january-2020/" rel="bookmark" title="La Liga World &#8211; 23rd January 2020">La Liga World &#8211; 23rd January 2020</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T04:41:57+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> </div>
+<div class="td-block-row">
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/premier-league-the-analysis-show-22nd-january-2020/" rel="bookmark" class="td-image-wrap" title="Premier League &#8211; The Analysis Show &#8211; 22nd January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Premier League &#8211; The Analysis Show &#8211; 22nd January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2019/11/ghk-324x160.jpg" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/premier-league-the-analysis-show-22nd-january-2020/" rel="bookmark" title="Premier League &#8211; The Analysis Show &#8211; 22nd January 2020">Premier League &#8211; The Analysis Show &#8211; 22nd January 2020</a></h3>
+ <div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T03:52:28+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/la-liga-show-24th-january-2020/" rel="bookmark" class="td-image-wrap" title="La Liga Show &#8211; 24th January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="La Liga Show &#8211; 24th January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2017/01/la-liga-show-324x160.png" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/la-liga-show-24th-january-2020/" rel="bookmark" title="La Liga Show &#8211; 24th January 2020">La Liga Show &#8211; 24th January 2020</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T02:14:05+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/fa-cup-preview-show-24th-january-2020/" rel="bookmark" class="td-image-wrap" title="FA Cup Preview Show &#8211; 24th January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="FA Cup Preview Show &#8211; 24th January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2017/02/fa-cup-324x160.png" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/fa-cup-preview-show-24th-january-2020/" rel="bookmark" title="FA Cup Preview Show &#8211; 24th January 2020">FA Cup Preview Show &#8211; 24th January 2020</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T02:10:11+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> </div>
+<div class="td-block-row">
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/viva-la-liga-23rd-january-2020/" rel="bookmark" class="td-image-wrap" title="Viva La Liga &#8211; 23rd January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Viva La Liga &#8211; 23rd January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2018/09/vlcsnap-2018-09-25-20h06m06s823-324x160.png" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/viva-la-liga-23rd-january-2020/" rel="bookmark" title="Viva La Liga &#8211; 23rd January 2020">Viva La Liga &#8211; 23rd January 2020</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T01:41:47+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/cultural-leonesa-vs-atletico-madrid-highlights/" rel="bookmark" class="td-image-wrap" title="Cultural Leonesa vs Atlético Madrid &#8211; Highlights"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Cultural Leonesa vs Atlético Madrid &#8211; Highlights" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2020/01/Cultural-Leonesa-vs-Atlético-Madrid-324x160.jpg" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/cultural-leonesa-vs-atletico-madrid-highlights/" rel="bookmark" title="Cultural Leonesa vs Atlético Madrid &#8211; Highlights">Cultural Leonesa vs Atlético Madrid &#8211; Highlights</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T00:55:57+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/24/the-debate-23rd-january-2020/" rel="bookmark" class="td-image-wrap" title="The Debate &#8211; 23rd January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="The Debate &#8211; 23rd January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2017/08/The-Debate-324x160.png" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/24/the-debate-23rd-january-2020/" rel="bookmark" title="The Debate &#8211; 23rd January 2020">The Debate &#8211; 23rd January 2020</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-24T00:08:08+00:00">Jan 24, 2020</time></span> </div>
+</div>
+</div> </div>
+<div class="td-block-row">
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/23/tranmere-rovers-vs-watford-highlights/" rel="bookmark" class="td-image-wrap" title="Tranmere Rovers vs Watford &#8211; Highlights"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Tranmere Rovers vs Watford &#8211; Highlights" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2020/01/Tranmere-Rovers-vs-Watford-324x160.jpg" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/23/tranmere-rovers-vs-watford-highlights/" rel="bookmark" title="Tranmere Rovers vs Watford &#8211; Highlights">Tranmere Rovers vs Watford &#8211; Highlights</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-23T23:44:52+00:00">Jan 23, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/23/inside-serie-a-24th-january-2020/" rel="bookmark" class="td-image-wrap" title="Inside Serie A &#8211; 24th January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Inside Serie A &#8211; 24th January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2018/09/vlcsnap-2018-09-14-11h48m35s676-324x160.png" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/23/inside-serie-a-24th-january-2020/" rel="bookmark" title="Inside Serie A &#8211; 24th January 2020">Inside Serie A &#8211; 24th January 2020</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-23T23:35:19+00:00">Jan 23, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/23/premier-league-world-special-ryan-giggs/" rel="bookmark" class="td-image-wrap" title="Premier League World Special &#8211; Ryan Giggs"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Premier League World Special &#8211; Ryan Giggs" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2019/12/vlcsnap-2019-12-06-00h49m37s378-324x160.png" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/23/premier-league-world-special-ryan-giggs/" rel="bookmark" title="Premier League World Special &#8211; Ryan Giggs">Premier League World Special &#8211; Ryan Giggs</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-23T22:41:38+00:00">Jan 23, 2020</time></span> </div>
+</div>
+</div> </div>
+<div class="td-block-row">
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/23/wolverhampton-wanderers-vs-liverpool-fc-highlights-full-match/" rel="bookmark" class="td-image-wrap" title="Wolverhampton Wanderers vs Liverpool &#8211; Highlights &#038; Full Match"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Wolverhampton Wanderers vs Liverpool &#8211; Highlights &#038; Full Match" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2018/12/Wolverhampton-Wanderers-vs-Liverpool-324x160.jpg" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/23/wolverhampton-wanderers-vs-liverpool-fc-highlights-full-match/" rel="bookmark" title="Wolverhampton Wanderers vs Liverpool &#8211; Highlights &#038; Full Match">Wolverhampton Wanderers vs Liverpool &#8211; Highlights &#038; Full Match</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-23T21:08:37+00:00">Jan 23, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/23/premier-league-review-23rd-january-2020/" rel="bookmark" class="td-image-wrap" title="Premier League Review &#8211; 23rd January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="Premier League Review &#8211; 23rd January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2017/02/premier-league-review-324x160.png" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/23/premier-league-review-23rd-january-2020/" rel="bookmark" title="Premier League Review &#8211; 23rd January 2020">Premier League Review &#8211; 23rd January 2020</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-23T19:06:40+00:00">Jan 23, 2020</time></span> </div>
+</div>
+</div> 
+<div class="td-block-span4">
+<div class="td_module_1 td_module_wrap td-animation-stack">
+<div class="td-module-image">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/23/bbc-match-of-the-day-22nd-january-week-24/" rel="bookmark" class="td-image-wrap" title="BBC Match of the Day – 22nd January – Week 24"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUQAAACgAQMAAABOhoelAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAAB1JREFUWMPtwTEBAAAAwiD7p/ZdCGAAAAAAAAAQBxpAAAH8le3bAAAAAElFTkSuQmCC" alt="" title="BBC Match of the Day – 22nd January – Week 24" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2017/02/MOTDdddd-324x160.jpg" width="324" height="160" /></a></div> </div>
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/23/bbc-match-of-the-day-22nd-january-week-24/" rel="bookmark" title="BBC Match of the Day – 22nd January – Week 24">BBC Match of the Day – 22nd January – Week 24</a></h3>
+<div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-23T01:32:30+00:00">Jan 23, 2020</time></span> </div>
+</div>
+</div> </div></div><div class="td-next-prev-wrap"><a href="#" class="td-ajax-prev-page ajax-page-disabled" id="prev-page-td_uid_1_5e2bb644beb3e" data-td_block_id="td_uid_1_5e2bb644beb3e"><i class="td-icon-font td-icon-menu-left"></i></a><a href="#" class="td-ajax-next-page" id="next-page-td_uid_1_5e2bb644beb3e" data-td_block_id="td_uid_1_5e2bb644beb3e"><i class="td-icon-font td-icon-menu-right"></i></a></div></div> </div></div></div></div> </div>
+</div> 
+
+
+<div class="td-footer-wrapper td-footer-container td-container-wrap td-footer-template-9 ">
+<div class="td-container">
+<div class="td-pb-row">
+<div class="td-pb-span12">
+</div>
+</div>
+<div class="td-pb-row">
+<div class="td-pb-span4">
+<div class="td_block_wrap td_block_7 td_block_widget td_uid_3_5e2bb644cb307_rand td-pb-border-top td_block_template_1 td-column-1 td_block_padding" data-td-block-uid="td_uid_3_5e2bb644cb307"><script>var block_td_uid_3_5e2bb644cb307 = new tdBlock();
+block_td_uid_3_5e2bb644cb307.id = "td_uid_3_5e2bb644cb307";
+block_td_uid_3_5e2bb644cb307.atts = '{"category_id":"","category_ids":"","tag_slug":"","sort":"random_7_day","autors_id":"","hide_title":"","installed_post_types":"","limit":"3","offset":"","header_color":"#","header_text_color":"#","custom_title":"Have you checked...","custom_url":"","title_style":"td_title_style_1","show_child_cat":"","sub_cat_ajax":"","ajax_pagination":"","ajax_pagination_infinite_stop":"","post_ids":"","el_class":"","td_ajax_filter_type":"","td_ajax_filter_ids":"","td_filter_default_txt":"All","td_ajax_preloading":"","class":"td_block_widget td_uid_3_5e2bb644cb307_rand","separator":"","block_template_id":"","m6_tl":"","show_modified_date":"","f_header_font_header":"","f_header_font_title":"Block header","f_header_font_settings":"","f_header_font_family":"","f_header_font_size":"","f_header_font_line_height":"","f_header_font_style":"","f_header_font_weight":"","f_header_font_transform":"","f_header_font_spacing":"","f_header_":"","f_ajax_font_title":"Ajax categories","f_ajax_font_settings":"","f_ajax_font_family":"","f_ajax_font_size":"","f_ajax_font_line_height":"","f_ajax_font_style":"","f_ajax_font_weight":"","f_ajax_font_transform":"","f_ajax_font_spacing":"","f_ajax_":"","f_more_font_title":"Load more button","f_more_font_settings":"","f_more_font_family":"","f_more_font_size":"","f_more_font_line_height":"","f_more_font_style":"","f_more_font_weight":"","f_more_font_transform":"","f_more_font_spacing":"","f_more_":"","m6f_title_font_header":"","m6f_title_font_title":"Article title","m6f_title_font_settings":"","m6f_title_font_family":"","m6f_title_font_size":"","m6f_title_font_line_height":"","m6f_title_font_style":"","m6f_title_font_weight":"","m6f_title_font_transform":"","m6f_title_font_spacing":"","m6f_title_":"","m6f_cat_font_title":"Article category tag","m6f_cat_font_settings":"","m6f_cat_font_family":"","m6f_cat_font_size":"","m6f_cat_font_line_height":"","m6f_cat_font_style":"","m6f_cat_font_weight":"","m6f_cat_font_transform":"","m6f_cat_font_spacing":"","m6f_cat_":"","m6f_meta_font_title":"Article meta info","m6f_meta_font_settings":"","m6f_meta_font_family":"","m6f_meta_font_size":"","m6f_meta_font_line_height":"","m6f_meta_font_style":"","m6f_meta_font_weight":"","m6f_meta_font_transform":"","m6f_meta_font_spacing":"","m6f_meta_":"","css":"","tdc_css":"","td_column_number":1,"color_preset":"","border_top":"","tdc_css_class":"td_uid_3_5e2bb644cb307_rand","tdc_css_class_style":"td_uid_3_5e2bb644cb307_rand_style"}';
+block_td_uid_3_5e2bb644cb307.td_column_number = "1";
+block_td_uid_3_5e2bb644cb307.block_type = "td_block_7";
+block_td_uid_3_5e2bb644cb307.post_count = "3";
+block_td_uid_3_5e2bb644cb307.found_posts = "63";
+block_td_uid_3_5e2bb644cb307.header_color = "#";
+block_td_uid_3_5e2bb644cb307.ajax_pagination_infinite_stop = "";
+block_td_uid_3_5e2bb644cb307.max_num_pages = "21";
+tdBlocksArray.push(block_td_uid_3_5e2bb644cb307);
+</script><div class="td-block-title-wrap"><h4 class="block-title td-block-title"><span class="td-pulldown-size">Have you checked...</span></h4></div><div id=td_uid_3_5e2bb644cb307 class="td_block_inner">
+<div class="td-block-span12">
+<div class="td_module_6 td_module_wrap td-animation-stack">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/20/bbc-match-of-the-day-2-19th-january-week-23/" rel="bookmark" class="td-image-wrap" title="BBC Match of the Day 2 – 19th January – Week 23"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABGAQMAAAAASKMqAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAABBJREFUKM9jGAWjYBQMKwAAA9QAAQWBn6cAAAAASUVORK5CYII=" alt="" title="BBC Match of the Day 2 – 19th January – Week 23" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2017/01/MOTD2-100x70.jpg" width="100" height="70" /></a></div>
+<div class="item-details">
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/20/bbc-match-of-the-day-2-19th-january-week-23/" rel="bookmark" title="BBC Match of the Day 2 – 19th January – Week 23">BBC Match of the Day 2 – 19th January – Week...</a></h3> <div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-20T00:37:43+00:00">Jan 20, 2020</time></span> </div>
+</div>
+</div>
+</div> 
+<div class="td-block-span12">
+<div class="td_module_6 td_module_wrap td-animation-stack">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/22/unionistas-de-salamanca-vs-real-madrid-highlights-full-match/" rel="bookmark" class="td-image-wrap" title="Unionistas de Salamanca vs Real Madrid &#8211; Highlights &#038; Full Match"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABGAQMAAAAASKMqAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAABBJREFUKM9jGAWjYBQMKwAAA9QAAQWBn6cAAAAASUVORK5CYII=" alt="" title="Unionistas de Salamanca vs Real Madrid &#8211; Highlights &#038; Full Match" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2020/01/Unionistas-de-Salamanca-vs-Real-Madrid-100x70.jpg" width="100" height="70" /></a></div>
+<div class="item-details">
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/22/unionistas-de-salamanca-vs-real-madrid-highlights-full-match/" rel="bookmark" title="Unionistas de Salamanca vs Real Madrid &#8211; Highlights &#038; Full Match">Unionistas de Salamanca vs Real Madrid &#8211; Highlights &#038; Full Match</a></h3> <div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-22T22:25:28+00:00">Jan 22, 2020</time></span> </div>
+</div>
+</div>
+</div> 
+<div class="td-block-span12">
+<div class="td_module_6 td_module_wrap td-animation-stack">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2020/01/21/the-debate-20th-january-2020/" rel="bookmark" class="td-image-wrap" title="The Debate &#8211; 20th January 2020"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABGAQMAAAAASKMqAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAABBJREFUKM9jGAWjYBQMKwAAA9QAAQWBn6cAAAAASUVORK5CYII=" alt="" title="The Debate &#8211; 20th January 2020" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2017/08/The-Debate-100x70.png" width="100" height="70" /></a></div>
+<div class="item-details">
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2020/01/21/the-debate-20th-january-2020/" rel="bookmark" title="The Debate &#8211; 20th January 2020">The Debate &#8211; 20th January 2020</a></h3> <div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2020-01-21T00:32:12+00:00">Jan 21, 2020</time></span> </div>
+</div>
+</div>
+</div> </div></div>  </div>
+<div class="td-pb-span4">
+<div class="td_block_wrap td_block_7 td_block_widget td_uid_4_5e2bb644d3053_rand td-pb-border-top td_block_template_1 td-column-1 td_block_padding" data-td-block-uid="td_uid_4_5e2bb644d3053"><script>var block_td_uid_4_5e2bb644d3053 = new tdBlock();
+block_td_uid_4_5e2bb644d3053.id = "td_uid_4_5e2bb644d3053";
+block_td_uid_4_5e2bb644d3053.atts = '{"category_id":"","category_ids":"","tag_slug":"","sort":"popular","autors_id":"","hide_title":"","installed_post_types":"","limit":"3","offset":"","header_color":"#","header_text_color":"#","custom_title":"Popular Posts","custom_url":"","title_style":"td_title_style_1","show_child_cat":"","sub_cat_ajax":"","ajax_pagination":"","ajax_pagination_infinite_stop":"","post_ids":"","el_class":"","td_ajax_filter_type":"","td_ajax_filter_ids":"","td_filter_default_txt":"All","td_ajax_preloading":"","class":"td_block_widget td_uid_4_5e2bb644d3053_rand","separator":"","block_template_id":"","m6_tl":"","show_modified_date":"","f_header_font_header":"","f_header_font_title":"Block header","f_header_font_settings":"","f_header_font_family":"","f_header_font_size":"","f_header_font_line_height":"","f_header_font_style":"","f_header_font_weight":"","f_header_font_transform":"","f_header_font_spacing":"","f_header_":"","f_ajax_font_title":"Ajax categories","f_ajax_font_settings":"","f_ajax_font_family":"","f_ajax_font_size":"","f_ajax_font_line_height":"","f_ajax_font_style":"","f_ajax_font_weight":"","f_ajax_font_transform":"","f_ajax_font_spacing":"","f_ajax_":"","f_more_font_title":"Load more button","f_more_font_settings":"","f_more_font_family":"","f_more_font_size":"","f_more_font_line_height":"","f_more_font_style":"","f_more_font_weight":"","f_more_font_transform":"","f_more_font_spacing":"","f_more_":"","m6f_title_font_header":"","m6f_title_font_title":"Article title","m6f_title_font_settings":"","m6f_title_font_family":"","m6f_title_font_size":"","m6f_title_font_line_height":"","m6f_title_font_style":"","m6f_title_font_weight":"","m6f_title_font_transform":"","m6f_title_font_spacing":"","m6f_title_":"","m6f_cat_font_title":"Article category tag","m6f_cat_font_settings":"","m6f_cat_font_family":"","m6f_cat_font_size":"","m6f_cat_font_line_height":"","m6f_cat_font_style":"","m6f_cat_font_weight":"","m6f_cat_font_transform":"","m6f_cat_font_spacing":"","m6f_cat_":"","m6f_meta_font_title":"Article meta info","m6f_meta_font_settings":"","m6f_meta_font_family":"","m6f_meta_font_size":"","m6f_meta_font_line_height":"","m6f_meta_font_style":"","m6f_meta_font_weight":"","m6f_meta_font_transform":"","m6f_meta_font_spacing":"","m6f_meta_":"","css":"","tdc_css":"","td_column_number":1,"color_preset":"","border_top":"","tdc_css_class":"td_uid_4_5e2bb644d3053_rand","tdc_css_class_style":"td_uid_4_5e2bb644d3053_rand_style"}';
+block_td_uid_4_5e2bb644d3053.td_column_number = "1";
+block_td_uid_4_5e2bb644d3053.block_type = "td_block_7";
+block_td_uid_4_5e2bb644d3053.post_count = "3";
+block_td_uid_4_5e2bb644d3053.found_posts = "14541";
+block_td_uid_4_5e2bb644d3053.header_color = "#";
+block_td_uid_4_5e2bb644d3053.ajax_pagination_infinite_stop = "";
+block_td_uid_4_5e2bb644d3053.max_num_pages = "4847";
+tdBlocksArray.push(block_td_uid_4_5e2bb644d3053);
+</script><div class="td-block-title-wrap"><h4 class="block-title td-block-title"><span class="td-pulldown-size">Popular Posts</span></h4></div><div id=td_uid_4_5e2bb644d3053 class="td_block_inner">
+<div class="td-block-span12">
+<div class="td_module_6 td_module_wrap td-animation-stack">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2014/12/25/marco-reus-gets-indecent-offer/" rel="bookmark" class="td-image-wrap" title="Marco Reus gets an indecent offer [VIDEO]"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABGAQMAAAAASKMqAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAABBJREFUKM9jGAWjYBQMKwAAA9QAAQWBn6cAAAAASUVORK5CYII=" alt="Marco Reus and Jordan Carver offer" title="Marco Reus gets an indecent offer [VIDEO]" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2014/12/Marco-Reus-and-Jordan-Carver-offer-100x70.jpg" width="100" height="70" /></a></div>
+<div class="item-details">
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2014/12/25/marco-reus-gets-indecent-offer/" rel="bookmark" title="Marco Reus gets an indecent offer [VIDEO]">Marco Reus gets an indecent offer [VIDEO]</a></h3> <div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2014-12-25T11:57:04+00:00">Dec 25, 2014</time></span> </div>
+</div>
+</div>
+</div> 
+<div class="td-block-span12">
+<div class="td_module_6 td_module_wrap td-animation-stack">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2014/12/26/messi-vs-ronaldo-golden-rivalry/" rel="bookmark" class="td-image-wrap" title="Messi vs Ronaldo: A Golden Rivalry"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABGAQMAAAAASKMqAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAABBJREFUKM9jGAWjYBQMKwAAA9QAAQWBn6cAAAAASUVORK5CYII=" alt="" title="Messi vs Ronaldo: A Golden Rivalry" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2014/12/1fda0a334bae4d0f5d036711e99df3bd.png" width="100" height="49" /></a></div>
+<div class="item-details">
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2014/12/26/messi-vs-ronaldo-golden-rivalry/" rel="bookmark" title="Messi vs Ronaldo: A Golden Rivalry">Messi vs Ronaldo: A Golden Rivalry</a></h3> <div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2014-12-26T14:31:30+00:00">Dec 26, 2014</time></span> </div>
+</div>
+</div>
+</div> 
+<div class="td-block-span12">
+<div class="td_module_6 td_module_wrap td-animation-stack">
+<div class="td-module-thumb"><a href="https://www.fullmatchesandshows.com/2014/12/22/taylor-gets-a-very-bad-cut-and-continues-playing-video/" rel="bookmark" class="td-image-wrap" title="Taylor gets a very bad cut and&#8230; continues playing! [VIDEO]"><img class="entry-thumb" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABGAQMAAAAASKMqAAAAA1BMVEWurq51dlI4AAAAAXRSTlMmkutdmwAAABBJREFUKM9jGAWjYBQMKwAAA9QAAQWBn6cAAAAASUVORK5CYII=" alt="" title="Taylor gets a very bad cut and&#8230; continues playing! [VIDEO]" data-type="image_tag" data-img-url="https://www.fullmatchesandshows.com/wp-content/uploads/2014/12/Newcastle-Taylor-terrible-injury.png" width="100" height="56" /></a></div>
+<div class="item-details">
+<h3 class="entry-title td-module-title"><a href="https://www.fullmatchesandshows.com/2014/12/22/taylor-gets-a-very-bad-cut-and-continues-playing-video/" rel="bookmark" title="Taylor gets a very bad cut and&#8230; continues playing! [VIDEO]">Taylor gets a very bad cut and&#8230; continues playing! [VIDEO]</a></h3> <div class="td-module-meta-info">
+<span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2014-12-22T13:21:16+00:00">Dec 22, 2014</time></span> </div>
+</div>
+</div>
+</div> </div></div>  </div>
+<div class="td-pb-span4">
+<div class="td_block_wrap td_block_popular_categories td_block_widget td_uid_5_5e2bb644dfdf3_rand widget widget_categories td-pb-border-top td_block_template_1" data-td-block-uid="td_uid_5_5e2bb644dfdf3"><div class="td-block-title-wrap"><h4 class="block-title td-block-title"><span class="td-pulldown-size">Popular Categories</span></h4></div><ul class="td-pb-padding-side"><li><a href="https://www.fullmatchesandshows.com/category/highlights/"><span class="td-cat-name">Highlights</span><span class="td-cat-no">10700</span></a></li><li><a href="https://www.fullmatchesandshows.com/category/show/"><span class="td-cat-name">Shows</span><span class="td-cat-no">4251</span></a></li><li><a href="https://www.fullmatchesandshows.com/category/england/"><span class="td-cat-name">England</span><span class="td-cat-no">3744</span></a></li><li><a href="https://www.fullmatchesandshows.com/category/full-match/"><span class="td-cat-name">Matches</span><span class="td-cat-no">3111</span></a></li><li><a href="https://www.fullmatchesandshows.com/category/premier-league/"><span class="td-cat-name">Premier League</span><span class="td-cat-no">2797</span></a></li><li><a href="https://www.fullmatchesandshows.com/category/spain/"><span class="td-cat-name">Spain</span><span class="td-cat-no">1957</span></a></li><li><a href="https://www.fullmatchesandshows.com/category/la-liga/"><span class="td-cat-name">La Liga</span><span class="td-cat-no">1783</span></a></li><li><a href="https://www.fullmatchesandshows.com/category/italy/"><span class="td-cat-name">Italy</span><span class="td-cat-no">1691</span></a></li></ul></div>  </div>
+</div>
+</div>
+</div>
+
+<div class="td-sub-footer-container td-container-wrap ">
+<div class="td-container">
+<div class="td-pb-row">
+<div class="td-pb-span td-sub-footer-menu">
+<div class="menu-contact-container"><ul id="menu-contact" class="td-subfooter-menu"><li id="menu-item-7243" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-first td-menu-item td-normal-menu menu-item-7243"><a href="https://www.fullmatchesandshows.com/privacy-policy-2/">Privacy Policy</a></li>
+<li id="menu-item-7244" class="menu-item menu-item-type-post_type menu-item-object-page td-menu-item td-normal-menu menu-item-7244"><a href="https://www.fullmatchesandshows.com/disclaimer-2/">Disclaimer</a></li>
+<li id="menu-item-7245" class="menu-item menu-item-type-post_type menu-item-object-page td-menu-item td-normal-menu menu-item-7245"><a href="https://www.fullmatchesandshows.com/contact-2/">Contact</a></li>
+</ul></div> </div>
+<div class="td-pb-span td-sub-footer-copy">
+&copy; </div>
+</div>
+</div>
+</div>
+</div>
+
+
+<style type="text/css" media="screen">
+/* custom css theme panel */
+.home.page #div-gpt-ad-1512088250170-0 {
+    display:none!important;
+}
+.embed-card-media {
+ position:relative
+}
+.embed-card-media .embed-image,.embed-card-media>img {
+ width:100%;
+ height: 380px;
+ display:block;
+ margin:0 auto;
+}
+.embed-play {
+ width:100px;
+ height:100px;
+ position:absolute;
+ top:50%;
+ left:50%;
+ margin:-50px 0 0 -50px;
+ border-radius:100%;
+ border:8px solid #fff;
+ -webkit-box-shadow:0 0 20px 5px #fff inset;
+ box-shadow:0 0 20px 5px #fff inset;
+ -webkit-transition:all .3s;
+ transition:all .3s
+}
+.embed-play:before {
+ content:'';
+ position:absolute;
+ width:0;
+ height:0;
+ top:17px;
+ left:32px;
+ border-style:solid;
+ border-width:25px 0 25px 35px;
+ border-color:transparent transparent transparent #fff
+}
+.embed-play:focus,.embed-play:hover {
+ -webkit-transform:scale(1.1);
+ transform:scale(1.1)
+}
+</style>
+<script type='text/javascript' src='https://www.fullmatchesandshows.com/wp-content/themes/Newspaper/js/tagdiv_theme.min.js?ver=9.6'></script>
+<script type='text/javascript' src='https://www.fullmatchesandshows.com/wp-includes/js/comment-reply.min.js?ver=5.3.2'></script>
+<script type='text/javascript' src='https://www.fullmatchesandshows.com/wp-includes/js/wp-embed.min.js?ver=5.3.2'></script>
+<script type='text/javascript' src='https://www.fullmatchesandshows.com/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js?ver=5.7'></script>
+
+<script>
+    
+
+	
+
+		(function(){
+			var html_jquery_obj = jQuery('html');
+
+			if (html_jquery_obj.length && (html_jquery_obj.is('.ie8') || html_jquery_obj.is('.ie9'))) {
+
+				var path = 'https://www.fullmatchesandshows.com/wp-content/themes/Newspaper-child/style.css';
+
+				jQuery.get(path, function(data) {
+
+					var str_split_separator = '#td_css_split_separator';
+					var arr_splits = data.split(str_split_separator);
+					var arr_length = arr_splits.length;
+
+					if (arr_length > 1) {
+
+						var dir_path = 'https://www.fullmatchesandshows.com/wp-content/themes/Newspaper';
+						var splited_css = '';
+
+						for (var i = 0; i < arr_length; i++) {
+							if (i > 0) {
+								arr_splits[i] = str_split_separator + ' ' + arr_splits[i];
+							}
+							//jQuery('head').append('<style>' + arr_splits[i] + '</style>');
+
+							var formated_str = arr_splits[i].replace(/\surl\(\'(?!data\:)/gi, function regex_function(str) {
+								return ' url(\'' + dir_path + '/' + str.replace(/url\(\'/gi, '').replace(/^\s+|\s+$/gm,'');
+							});
+
+							splited_css += "<style>" + formated_str + "</style>";
+						}
+
+						var td_theme_css = jQuery('link#td-theme-css');
+
+						if (td_theme_css.length) {
+							td_theme_css.after(splited_css);
+						}
+					}
+				});
+			}
+		})();
+
+	
+	
+</script>
+</body>
+</html>
