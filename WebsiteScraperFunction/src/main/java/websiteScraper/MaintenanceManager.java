@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class MaintenanceManager {
-    private static String s3Bucket = "my-sports-website";
-    private static String objectKey = "data/database.csv";
+    private static String s3Bucket = ConfigManager.S3_BUCKET;
+    private static String objectKey = ConfigManager.DB_KEY;
     public static void main(String[] args) {
         //scrapeVideoLinkTest1();
         //scrapeVideoLinkTest2();

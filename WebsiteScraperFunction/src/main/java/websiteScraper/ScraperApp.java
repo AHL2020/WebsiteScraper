@@ -125,7 +125,11 @@ public class ScraperApp {
             articleAttr.put("matchCompetition", scraper.scrapeMatchCompetition(html));
 
             List<String> matchTags = scraper.scrapeTags(html);
-            articleAttr.put("matchTags", matchTags.toString());
+            String matchTagsStr = "";
+            if(matchTags.size() > 0) {
+                matchTagsStr = matchTags.toString().replaceAll("\\[", "").replaceAll("\\]", "");
+            }
+            articleAttr.put("matchTags", matchTagsStr);
 
             // process video links: video-tags, page-links, page-html, video-links
             List<String> videoLinkTags = scraper.scrapeVideoLinkTags(html);

@@ -39,7 +39,7 @@ public class ImageManager {
         String category = "Bundesliga";
 
         S3Manager s3Manager = S3Manager.getInstance(S3Manager.DeploymentType.LOCAL, Regions.US_EAST_1);
-        String s3Bucket = "my-sports-website";
+        String s3Bucket = ConfigManager.S3_BUCKET;
         String mappingCfgObjKey = "config/clubs-names-logos.cfg";
 
         Map<String, String> mappingConfig = s3Manager.loadClubNamesLogosConfig(s3Bucket, mappingCfgObjKey);

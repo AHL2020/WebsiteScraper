@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public class ValidationManager {
+    //
+    public static final int VIDEOLINK_LINK_MIN_LENGTH = 10;
+    public static final int VIDEOLINK_LINK_MAX_LENGTH = 100;
+    public static final int VIDEOLINK_TAG_MIN_LENGTH = 5;
+    public static final int VIDEOLINK_TAG_MAX_LENGTH = 20;
+    //
     private static ValidationManager instance = null;
     private LinkedList<String> log = null;
     // ---
@@ -129,8 +135,9 @@ public class ValidationManager {
                 }
                 if(odd) {
                     // link
-                    if(token.length() < 20 || token.length() > 100) {
-                        log.add("[ValidationManager][isValidMatchVideoLinks]: link invalid length");
+                    if(token.length() < ValidationManager.VIDEOLINK_LINK_MIN_LENGTH
+                        || token.length() > ValidationManager.VIDEOLINK_LINK_MAX_LENGTH) {
+                        log.add("[ValidationManager][isValidMatchVideoLinks]: link invalid length (" + token.length() + ")");
                         return false;
                     }
                     for(String invalidToken: blacklist) {
@@ -141,8 +148,9 @@ public class ValidationManager {
                     }
                 } else {
                     // tag
-                    if(token.length() < 5 || token.length() > 20) {
-                        log.add("[ValidationManager][isValidMatchVideoLinks]: tag invalid length");
+                    if(token.length() < ValidationManager.VIDEOLINK_TAG_MIN_LENGTH
+                        || token.length() > ValidationManager.VIDEOLINK_TAG_MAX_LENGTH) {
+                        log.add("[ValidationManager][isValidMatchVideoLinks]: tag invalid length (" + token.length() + ")");
                         return false;
                     }
                 }
@@ -161,6 +169,65 @@ public class ValidationManager {
         if(teamName == null) return false;
         if(teamName.equalsIgnoreCase("")) return false;
         return true;
+    }
+    //
+    public Map<String, String> fixArticle(Map<String, String> article) {
+        article = fixVideoLinks(article);
+        article = fixVideoLinksTags(article);
+        return article;
+    }
+    //
+    private Map<String, String> fixVideoLinks(Map<String, String> article) {
+        if(article.get("matchVideoLinks").equals("")) return article;
+        String[] videoLinks = article.get("matchVideoLinks").split(",");
+        //System.out.println("[ValidationManager][fixVideoLinks] before: " + article.get("matchVideoLinks"));
+        List<String> videoLinksFixedLL = new LinkedList<>();
+        for(int i = 0; i < videoLinks.length; i=i+2) {
+            String link = videoLinks[i].trim();
+            String tag = videoLinks[i+1].trim();
+            if(link.length() > 0 && tag.length() > 0) {
+                videoLinksFixedLL.add(link);
+                videoLinksFixedLL.add(tag);
+            }
+        }
+        String videoLinksFixedStr = videoLinksFixedLL.toString();
+        videoLinksFixedStr = videoLinksFixedStr.replaceAll("\\[", "").replaceAll("\\]", "");
+        //if(videoLinksFixedStr.indexOf("[") == 0) {
+        //    videoLinksFixedStr = videoLinksFixedStr.substring(1);
+        //}
+        //if(videoLinksFixedStr.indexOf("]") == videoLinksFixedStr.length()-1) {
+        //    videoLinksFixedStr = videoLinksFixedStr.substring(0, videoLinksFixedStr.length()-1);
+        //}
+        //System.out.println("[ValidationManager][fixVideoLinks] after:  " + videoLinksFixedStr);
+        article.put("matchVideoLinks", videoLinksFixedStr);
+        return article;
+    }
+    //
+    private Map<String, String> fixVideoLinksTags(Map<String, String> article) {
+        if(article.get("matchVideoLinks").equals("")) return article;
+        String[] videoLinks = article.get("matchVideoLinks").split(",");
+        //System.out.println("[ValidationManager][fixVideoLinksTags] before: " + article.get("matchVideoLinks"));
+        List<String> videoLinksFixedLL = new LinkedList<>();
+        String videoLinksFixedStr = "";
+        boolean foundIssues = false;
+        for(int i = 0; i < videoLinks.length; i=i+2) {
+            String link = videoLinks[i].trim();
+            String tag = videoLinks[i+1].trim();
+            if(tag.length() > ValidationManager.VIDEOLINK_TAG_MAX_LENGTH) {
+                int truncate = ValidationManager.VIDEOLINK_TAG_MAX_LENGTH - 3;
+                tag = tag.substring(0,truncate) + "...";
+                foundIssues = true;
+            }
+            videoLinksFixedStr = videoLinksFixedStr + link + "," + tag + ",";
+        }
+        if(videoLinksFixedStr.lastIndexOf(",") == videoLinksFixedStr.length()-1) {
+            videoLinksFixedStr = videoLinksFixedStr.substring(0, videoLinksFixedStr.length()-2);
+        }
+        //System.out.println("[ValidationManager][fixVideoLinksTags] after:  " + videoLinksFixedStr);
+        if(foundIssues) {
+            article.put("matchVideoLinks", videoLinksFixedStr);
+        }
+        return article;
     }
     //
 }

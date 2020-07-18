@@ -83,11 +83,12 @@ public class DataUtils {
     }
 
     public static HashMap<String, MatchBean> loadMatchBeanObjects(String bucketName, String databaseKey) {
+        System.out.println("[DataUtils][loadMatchBeanObjects] bucketName: [" + bucketName + "], databaseKey: [" + databaseKey + "]");
         //System.out.println("start: loadMatchBeanObjects");
         AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(REGION).build();
         //System.out.println("s3 object build()");
         HashMap<String, MatchBean> matches = new HashMap<String, MatchBean>();
-        //System.out.println("creating BR for bucketName: [" + bucketName + "] and databaseKey: [" + databaseKey + "]");
+
 
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(s3.getObject(
@@ -138,9 +139,9 @@ public class DataUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error loading from database: " + e.toString());
+            System.out.println("[DataUtils][loadMatchBeanObjects] Error loading from database: " + e.toString());
         }
-        System.out.println("Successfully loaded " + matches.size() + " matches from database.");
+        System.out.println("[DataUtils][loadMatchBeanObjects] Successfully loaded " + matches.size() + " matches from database.");
         return matches;
     }
 

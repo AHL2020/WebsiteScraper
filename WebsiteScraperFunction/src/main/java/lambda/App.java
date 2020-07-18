@@ -23,10 +23,10 @@ public class App implements RequestHandler<Object, Object> {
             // config
             S3Manager.DeploymentType type = S3Manager.DeploymentType.CLOUD;
             Regions region = Regions.US_EAST_1;
-            String bucketName = "my-sports-website";
-            String databaseKey = "data/database.csv";
+            String bucketName = System.getenv("BUCKET_NAME"); // "my-sports-website";
+            String databaseKey = System.getenv("DATABASE_KEY"); // "data/database.csv";
             // run
-            LegacyScraperManager.run(type, region, bucketName, databaseKey);
+            LegacyScraperManager.run(type, region, bucketName, databaseKey, LegacyScraperManager.RunMode.PROD);
             boolean success = true;
             String output = String.format("{ \"message\": \"LegacyScraperManager\", \"Run\": \"%b\" }", success);
             return new GatewayResponse(output, headers, 200);

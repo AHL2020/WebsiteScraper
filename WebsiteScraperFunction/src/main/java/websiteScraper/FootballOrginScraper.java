@@ -537,6 +537,12 @@ public class FootballOrginScraper implements WebsiteScraper {
 
             if(token.equalsIgnoreCase("")) {
                 //
+                if(html.contains("services.brid.tv/player/build/brid.min.js")) {
+                    int p1 = html.indexOf("\"video\":\"") + "\"video\":\"".length();
+                    int p2 = html.indexOf("\"}", p1);
+                    token = html.substring(p1, p2).trim();
+                    token = "bridplayer-id:" + token;
+                }
             }
 
             //----

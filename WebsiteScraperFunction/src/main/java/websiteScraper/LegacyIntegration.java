@@ -16,8 +16,8 @@ public class LegacyIntegration {
 
     public static void main(String[] args) {
 
-        String s3Bucket = "my-sports-website";
-        String databaseKey = "data/database.csv";
+        String s3Bucket = ConfigManager.S3_BUCKET;
+        String databaseKey = ConfigManager.DB_KEY;
 
         /* test 1 */
         HashMap<String, MatchBean> matchBeanObjects = null;
@@ -211,7 +211,7 @@ public class LegacyIntegration {
 
     //
     public static List<Map<String, String>> loadArticlesFromS3(String s3Bucket, String objectKey) {
-        List<Map<String, String>> articlesLL = new LinkedList<Map<String, String>>();
+        List<Map<String, String>> articlesLL = new LinkedList<>();
         HashMap<String, MatchBean> articlesHM = DataUtils.loadMatchBeanObjects(s3Bucket, objectKey);
         for(Map.Entry<String, MatchBean> entry: articlesHM.entrySet()) {
             articlesLL.add(convertMatchBeanToArticle(entry.getValue()));
@@ -222,12 +222,11 @@ public class LegacyIntegration {
     //
     public static boolean saveArticlesToS3(String s3Bucket, String objectKey, List<Map<String, String>> articles) {
 
-        HashMap<String, MatchBean> articlesHM = new HashMap<String, MatchBean>();
+        HashMap<String, MatchBean> articlesHM = new HashMap<>();
         for(int i = 0; i < articles.size(); i++) {
             articlesHM.put(articles.get(i).get("articleKey"), convertArticleToMatchBean(articles.get(i)));
         }
-        boolean success = DataUtils.saveMatchBeanObjects(articlesHM, s3Bucket, objectKey);
-        return success;
+        return DataUtils.saveMatchBeanObjects(articlesHM, s3Bucket, objectKey);
     }
 
 }

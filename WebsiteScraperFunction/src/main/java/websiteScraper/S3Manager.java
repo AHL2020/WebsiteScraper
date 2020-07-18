@@ -3,10 +3,7 @@ package websiteScraper;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.GetObjectRequest;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.*;
 import org.apache.commons.io.FileUtils;
 
 import javax.imageio.ImageIO;
@@ -21,9 +18,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class S3Manager {
-    public static enum DeploymentType {LOCAL, CLOUD};
-    private static S3Manager instance = null;
+    public enum DeploymentType {LOCAL, CLOUD};
     private DeploymentType deploy = DeploymentType.LOCAL;
+    private static S3Manager instance = null;
     private AmazonS3 s3 = null;
     private Regions region = Regions.US_EAST_1;
 
@@ -32,7 +29,7 @@ public class S3Manager {
 
         S3Manager s3Manager = S3Manager.getInstance(DeploymentType.LOCAL, Regions.US_EAST_1);
 
-        String s3Bucket = "my-sports-website";
+        String s3Bucket = ConfigManager.S3_BUCKET;
 
         /*
 
@@ -53,11 +50,6 @@ public class S3Manager {
         System.out.println("s3 test 2 success: " + success);
 
         */
-
-        String mappingCfgObjKey = "config/clubs-names-logos.cfg";
-        Map<String, String> config = s3Manager.loadClubNamesLogosConfig(s3Bucket, mappingCfgObjKey);
-        System.out.println(new PrettyPrintingMap<String, String>(config));
-
     }
 
     private S3Manager(DeploymentType type, Regions region) {
@@ -73,9 +65,8 @@ public class S3Manager {
     }
 
     public BufferedImage loadBufferedImage(String s3Bucket, String objectKey) {
-        System.out.println("S3Manager.loadBufferedImage");
-        System.out.println("s3Bucket: " + s3Bucket);
-        System.out.println("objectKey: " + objectKey);
+        System.out.println("[S3Manager][loadBufferedImage] s3Bucket: " + s3Bucket);
+        System.out.println("[S3Manager][loadBufferedImage] objectKey: " + objectKey);
         BufferedImage bufferedImage = null;
         try {
             bufferedImage = ImageIO.read(s3.getObject(
@@ -166,7 +157,7 @@ public class S3Manager {
             }
 
             // open connection and copy file
-            System.out.println("objectUrl: " + objectUrl);
+            System.out.println("[S3Manager][saveObjectFromUrl] objectUrl: " + objectUrl);
             conn = new URL(objectUrl).openConnection();
             conn.connect();
             InputStream inputStream = conn.getInputStream();
@@ -196,5 +187,16 @@ public class S3Manager {
         } finally {
             fileToPut.delete();
         }
+    }
+    //
+    public InputStream loadObject(String s3Bucket, String objectKey) {
+        InputStream inputStream = null;
+        try {
+            S3Object s3Object = s3.getObject(new GetObjectRequest(s3Bucket, objectKey));
+            inputStream = s3Object.getObjectContent();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return inputStream;
     }
 }
