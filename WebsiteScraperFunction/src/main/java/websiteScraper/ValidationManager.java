@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class ValidationManager {
     //
@@ -13,7 +14,8 @@ public class ValidationManager {
     public static final int VIDEOLINK_TAG_MAX_LENGTH = 20;
     //
     private static ValidationManager instance = null;
-    private LinkedList<String> log = null;
+    private List<String> log;
+    private ConfigManager configManager = ConfigManager.getInstance();
     // ---
     private ValidationManager() {
         log = new LinkedList<>();
@@ -27,21 +29,24 @@ public class ValidationManager {
     }
     // ---
     public List<String> getLog() {
-        return (List<String>)log.clone();
+        return log;
     }
     // ---
     public boolean isValidArticle(Map<String,String> article) {
         log = new LinkedList<>();
         boolean isValid = true;
-        String[] attributes = ScraperApp.articleAttributes;
-        for(Map.Entry entry: article.entrySet()) {
-            String key = (String)entry.getKey();
+        //String[] attributes = ScraperApp.articleAttributes;
+        for(Entry<String, String> entry: article.entrySet()) {
+            String key = entry.getKey();
             //System.out.println(key);
             switch(key) {
-                case "articleKey": /*System.out.println("validating articleKey ...");*/ isValid &= isValidArticleKey((String)entry.getValue()); break;
-                case "articleTitle": /*System.out.println("validating articleTitle ...");*/ isValid &= isValidArticleTitle((String)entry.getValue()); break;
-                case "articleDate": /*System.out.println("validating articleDate ...");*/ isValid &= isValidArticleDate((String)entry.getValue()); break;
-                case "matchVideoLinks": /*System.out.println("validating matchVideoLinks ...");*/ isValid &= isValidMatchVideoLinks((String)entry.getValue()); break;
+                case "articleKey":       isValid &= isValidArticleKey(entry.getValue()); break;
+                case "articleTitle":     isValid &= isValidArticleTitle(entry.getValue()); break;
+                case "articleDate":      isValid &= isValidArticleDate(entry.getValue()); break;
+                //case "matchHomeTeam":
+                //case "matchAwayTeam":    isValid &= isValidTeam(entry.getValue()); break;
+                case "matchVideoLinks":  isValid &= isValidMatchVideoLinks(entry.getValue()); break;
+                case "matchCompetition": isValid &= isValidMatchCompetition(entry.getValue()); break;
             }
         }
         return isValid;
@@ -107,6 +112,15 @@ public class ValidationManager {
         return true;
     }
     // ---
+    public boolean isValidMatchCompetition(String matchCompetition) {
+        List<String> validCompetitions = configManager.getArticleCategoryNames();
+        for(String competition: validCompetitions) {
+            if(competition.equalsIgnoreCase(matchCompetition)) return true;
+        }
+        log.add("[ValidationManager][isValidMatchCompetition]: found invalid competition: [" + matchCompetition + "]");
+        return false;
+    }
+    // ---
     public boolean isValidMatchVideoLinks(String matchVideoLinks) {
         //System.out.println("isValidMatchVideoLinks ...");
         String[] blacklist = {".jpg", ".jpeg", ".png"};
@@ -167,13 +181,13 @@ public class ValidationManager {
     //
     public boolean isValidTeam(String teamName) {
         if(teamName == null) return false;
-        if(teamName.equalsIgnoreCase("")) return false;
-        return true;
+        return !teamName.equalsIgnoreCase("");
     }
     //
     public Map<String, String> fixArticle(Map<String, String> article) {
-        article = fixVideoLinks(article);
-        article = fixVideoLinksTags(article);
+        fixVideoLinks(article);
+        fixVideoLinksTags(article);
+        fixMatchCompetition(article);
         return article;
     }
     //
@@ -191,7 +205,7 @@ public class ValidationManager {
             }
         }
         String videoLinksFixedStr = videoLinksFixedLL.toString();
-        videoLinksFixedStr = videoLinksFixedStr.replaceAll("\\[", "").replaceAll("\\]", "");
+        videoLinksFixedStr = videoLinksFixedStr.replaceAll("\\[", "").replaceAll("]", "");
         //if(videoLinksFixedStr.indexOf("[") == 0) {
         //    videoLinksFixedStr = videoLinksFixedStr.substring(1);
         //}
@@ -207,8 +221,7 @@ public class ValidationManager {
         if(article.get("matchVideoLinks").equals("")) return article;
         String[] videoLinks = article.get("matchVideoLinks").split(",");
         //System.out.println("[ValidationManager][fixVideoLinksTags] before: " + article.get("matchVideoLinks"));
-        List<String> videoLinksFixedLL = new LinkedList<>();
-        String videoLinksFixedStr = "";
+        StringBuilder videoLinksFixedStr = new StringBuilder();
         boolean foundIssues = false;
         for(int i = 0; i < videoLinks.length; i=i+2) {
             String link = videoLinks[i].trim();
@@ -218,14 +231,24 @@ public class ValidationManager {
                 tag = tag.substring(0,truncate) + "...";
                 foundIssues = true;
             }
-            videoLinksFixedStr = videoLinksFixedStr + link + "," + tag + ",";
+            videoLinksFixedStr.append(link).append(",").append(tag).append(",");
         }
         if(videoLinksFixedStr.lastIndexOf(",") == videoLinksFixedStr.length()-1) {
-            videoLinksFixedStr = videoLinksFixedStr.substring(0, videoLinksFixedStr.length()-2);
+            videoLinksFixedStr = new StringBuilder(videoLinksFixedStr.substring(0, videoLinksFixedStr.length() - 2));
         }
         //System.out.println("[ValidationManager][fixVideoLinksTags] after:  " + videoLinksFixedStr);
         if(foundIssues) {
-            article.put("matchVideoLinks", videoLinksFixedStr);
+            article.put("matchVideoLinks", videoLinksFixedStr.toString());
+        }
+        return article;
+    }
+    //
+    private Map<String, String> fixMatchCompetition(Map<String, String> article) {
+        String defaultCategory = configManager.getDefaultArticleCategory();
+        String oldMatchCompetition = article.get("matchCompetition");
+        if(!isValidMatchCompetition(oldMatchCompetition)) {
+            article.put("matchCompetition",defaultCategory);
+            //System.out.println("[ValidationManager][fixMatchCompetition] fixed from [" + oldMatchCompetition + "] to [" + defaultCategory + "]");
         }
         return article;
     }
