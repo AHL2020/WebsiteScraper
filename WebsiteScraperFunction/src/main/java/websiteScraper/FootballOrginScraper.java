@@ -502,21 +502,16 @@ public class FootballOrginScraper implements WebsiteScraper {
         }
         return videoLinkPageUrlsLL;
     }
-
+    //
     @Override
     public String scrapeVideoLink(String html, String videoLinkTag) {
         String token = "";
-
-
         try {
-
             Document doc = Jsoup.parse(html);
             Element el = null;
             String htmlOriginal = html;
             html = html.toLowerCase();
-
             // ----
-
             // Vooplayer
             if(token.equalsIgnoreCase("")) {
                 //System.out.printf("[FOS][scrapeVideoLink] Parsing for Vooplayer ... \n");
@@ -530,13 +525,10 @@ public class FootballOrginScraper implements WebsiteScraper {
                     //System.out.printf("[FOS][scrapeVideoLink] NOT found data-playerId \n");
                 }
             }
-
             //----
-
             // Bridplayer
-
             if(token.equalsIgnoreCase("")) {
-                //
+                //System.out.printf("[FOS][scrapeVideoLink] Parsing for Bridplayer ... \n");
                 if(html.contains("services.brid.tv/player/build/brid.min.js")) {
                     int p1 = html.indexOf("\"video\":\"") + "\"video\":\"".length();
                     int p2 = html.indexOf("\"}", p1);
@@ -544,14 +536,11 @@ public class FootballOrginScraper implements WebsiteScraper {
                     token = "bridplayer-id:" + token;
                 }
             }
-
             //----
-
             // Default
-
             if(token.equalsIgnoreCase("")) {
                 //System.out.printf("[FOS][scrapeVideoLink] Parsing for Default videoplayer ... \n");
-                el = doc.select("div.entry-content iframe").first();
+                el = doc.select("div.player-api iframe").first();
                 if (el != null) {
                     String attr = el.attr("src");
                     //System.out.printf("[FOS][scrapeVideoLink] src: [%s] \n", attr);
@@ -560,45 +549,9 @@ public class FootballOrginScraper implements WebsiteScraper {
                     //System.out.printf("[FOS][scrapeVideoLink] NOT found div.entry-content iframe \n");
                 }
             }
-
             //----
-
-
-//        try {
-//
-//            //System.out.println(html);
-//            //System.exit(0);
-//
-//            int p1 = 0;
-//            int p2 = 0;
-//// todo: debug
-//            if (html.indexOf("data-player") != -1) {
-//                // vooplayer
-//                //System.out.printf("[debug] vooplayer \n");
-//                p1 = html.indexOf("data-player");
-//                p2 = html.indexOf("\"", p1 + 10);
-//                //System.out.printf("p1: %d, p2: %d \n", p1, p2);
-//                token = htmlOriginal.substring(p1 + 14, p2).trim();
-//                //System.out.printf("[debug] vooplayer token: [%s] \n", token);
-//                token = "https://app.cdn.vooplayer.com/publish/" + token;
-//                //System.out.printf("[debug] vooplayer url: [%s] \n", token);
-//            } else if (html.indexOf("entry-content") != -1 && html.indexOf("iframe") != -1) {
-//                //System.out.println("[debug] found tags entry-content and iframe");
-//                // normal video
-//                p1 = html.indexOf("entry-content");
-//                //System.out.println("[debug] p1 indexOf 'entry-content': [" + p1 + "]");
-//                p1 = html.indexOf("iframe", p1);
-//                //System.out.println("[debug] p1 indexOf 'iframe':        [" + p1 + "]");
-//                p1 = html.indexOf("src=\"", p1) + 5;
-//                //System.out.println("[debug] p1 indexOf 'src=\"':        [" + p1 + "]");
-//                p2 = html.indexOf("\"", p1);
-//                //System.out.println("[debug] p2 indexOf '\"':            [" + p2 + "]");
-//                token = htmlOriginal.substring(p1, p2).trim();
-//                //System.out.println("[debug] token:            [" + token + "]");
-//            } else {
-//                System.out.println("[FO Scraper]:scrapeVideoLink: cannot find link!");
-//            }
-//
+            //System.out.println("Finished scraping for video links, found: [" + token + "]");
+            //----
             // truncate at '?' sign
             int p1 = token.indexOf("?");
             //System.out.println("[debug] p1 indexOf '?':        [" + p1 + "]");
@@ -607,7 +560,6 @@ public class FootballOrginScraper implements WebsiteScraper {
                 token = token.substring(0, p1);
                 //System.out.println("[debug] token, removed '?':   [" + token + "]");
             }
-//
 //            //System.exit(0);
 
         } catch (Exception e) {
@@ -617,7 +569,7 @@ public class FootballOrginScraper implements WebsiteScraper {
         //System.out.printf("[FOS][scrapeVideoLink] videoLink: [%s] \n", token);
         return token;
     }
-
+    //
     @Override
     public List<String> scrapeTags(String html) {
         List<String> tags = new LinkedList<String>();
