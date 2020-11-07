@@ -32,8 +32,11 @@ public class ConfigManager {
     private XPath xPath = null;
 
     public static void main(String[] args) {
-        testLoadConfigS3();
+
+        testGetArticleCategoryNames();
         /*
+        testGetDefaultArticleCategory();
+        testLoadConfigS3();
         testGetClubIdByName();
         testGetS3bucket();
         testGetDatabaseKey();
@@ -41,6 +44,22 @@ public class ConfigManager {
         testGetDefaultArticleType();
         testGetArticleTypeIdByName();
          */
+    }
+
+    public static void testGetArticleCategoryNames() {
+        ConfigManager configManager = ConfigManager.getInstance();
+        boolean success = configManager.loadConfig();
+        System.out.println("[ConfigManager][testGetArticleCategoryNames] loadConfig(): [" + success + "]");
+        List<String> articleCategoryNames = configManager.getArticleCategoryNames();
+        System.out.println("[ConfigManager][testGetArticleCategoryNames] articleCategoryNames: [" + articleCategoryNames + "]");
+    }
+
+    public static void testGetDefaultArticleCategory() {
+        ConfigManager configManager = ConfigManager.getInstance();
+        boolean success = configManager.loadConfig();
+        System.out.println("[ConfigManager][testGetDefaultArticleCategory] loadConfig(): [" + success + "]");
+        String defaultArticleCategory = configManager.getDefaultArticleCategory();
+        System.out.println("[ConfigManager][testGetDefaultArticleCategory] defaultArticleCategory: [" + defaultArticleCategory + "]");
     }
 
     public static void testLoadConfigS3() {
@@ -245,6 +264,10 @@ public class ConfigManager {
 
     public String getDefaultArticleCategory() {
         return getElementTextValueByXPath("./config/app/categories/category[@id='default']/name");
+    }
+
+    public List<String> getArticleCategoryNames() {
+        return getElementTextValuesByXPath("./config/app/categories/category/name");
     }
 
     public String getCategoryLogoByNameAndLanguage(String categoryName, String language) {
