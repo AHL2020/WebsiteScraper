@@ -505,7 +505,9 @@ public class FootballOrginScraper implements WebsiteScraper {
     //
     @Override
     public String scrapeVideoLink(String html, String videoLinkTag) {
+        //System.out.println("[FootballOrginScraper][scrapeVideoLink] start ...");
         String token = "";
+        boolean truncate = true;
         try {
             Document doc = Jsoup.parse(html);
             Element el = null;
@@ -530,39 +532,89 @@ public class FootballOrginScraper implements WebsiteScraper {
             if(token.equalsIgnoreCase("")) {
                 //System.out.printf("[FOS][scrapeVideoLink] Parsing for Bridplayer ... \n");
                 if(html.contains("services.brid.tv/player/build/brid.min.js")) {
+                    //System.out.printf("[FOS][scrapeVideoLink] found services.brid.tv/player/build/brid.min.js \n");
                     int p1 = html.indexOf("\"video\":\"") + "\"video\":\"".length();
                     int p2 = html.indexOf("\"}", p1);
                     token = html.substring(p1, p2).trim();
                     token = "bridplayer-id:" + token;
+                    //System.out.printf("[FOS][scrapeVideoLink] bridplayer-id: [%s] \n", token);
+                } else {
+                    //System.out.printf("[FOS][scrapeVideoLink] NOT found bridplayer-id \n");
+                }
+            }
+            //----
+            // player-api
+            if(token.equalsIgnoreCase("")) {
+                //System.out.printf("[FOS][scrapeVideoLink] Parsing for player-api videoplayer ... \n");
+                el = doc.select("div.player-api > iframe").first();
+                if (el != null) {
+                    String attr = el.attr("src");
+                    //System.out.printf("[FOS][scrapeVideoLink] src: [%s] \n", attr);
+                    token = attr;
+                } else {
+                    //System.out.printf("[FOS][scrapeVideoLink] NOT found div.player-api > iframe \n");
+                }
+            }
+            //----
+            // wp-video
+            if(token.equalsIgnoreCase("")) {
+                //System.out.printf("[FOS][scrapeVideoLink] Parsing for wp-video videoplayer ... \n");
+                el = doc.select("div.wp-video > video").first();
+                if (el != null) {
+                    String attr = el.attr("src");
+                    //System.out.printf("[FOS][scrapeVideoLink] video link: [%s] \n", attr);
+                    token = attr;
+                } else {
+                    //System.out.printf("[FOS][scrapeVideoLink] NOT found \n");
+                }
+            }
+            //----
+            // youtube
+            if(token.equalsIgnoreCase("")) {
+                //System.out.printf("[FOS][scrapeVideoLink] Parsing for youtube videoplayer ... \n");
+                el = doc.select("meta[property=og:video:url]").first();
+                if (el != null) {
+                    String attr = el.attr("content");
+                    // all pages have this meta property so it's important
+                    // we check it contains 'youtube'
+                    if(attr.contains("youtube")) {
+                        //System.out.printf("[FOS][scrapeVideoLink] video link: [%s] \n", attr);
+                        token = attr;
+                        truncate = false;
+                    }
+                } else {
+                    //System.out.printf("[FOS][scrapeVideoLink] NOT found \n");
                 }
             }
             //----
             // Default
             if(token.equalsIgnoreCase("")) {
                 //System.out.printf("[FOS][scrapeVideoLink] Parsing for Default videoplayer ... \n");
-                el = doc.select("div.player-api iframe").first();
+                //System.out.println("\n\n" + doc.html() + "\n\n");
+                el = doc.select("iframe[allowfullscreen]").first();
                 if (el != null) {
                     String attr = el.attr("src");
-                    //System.out.printf("[FOS][scrapeVideoLink] src: [%s] \n", attr);
+                    //System.out.printf("[FOS][scrapeVideoLink] video link: [%s] \n", attr);
                     token = attr;
                 } else {
-                    //System.out.printf("[FOS][scrapeVideoLink] NOT found div.entry-content iframe \n");
+                    //System.out.printf("[FOS][scrapeVideoLink] NOT found \n");
                 }
             }
             //----
             //System.out.println("Finished scraping for video links, found: [" + token + "]");
             //----
             // truncate at '?' sign
-            int p1 = token.indexOf("?");
-            //System.out.println("[debug] p1 indexOf '?':        [" + p1 + "]");
-            if(p1 != -1) {
-                //System.out.println("[debug] removing '?'");
-                token = token.substring(0, p1);
-                //System.out.println("[debug] token, removed '?':   [" + token + "]");
+            if(truncate) {
+                int p1 = token.indexOf("?");
+                //System.out.println("[debug] p1 indexOf '?':        [" + p1 + "]");
+                if (p1 != -1) {
+                    //System.out.println("[debug] removing '?'");
+                    token = token.substring(0, p1);
+                    //System.out.println("[debug] token, removed '?':   [" + token + "]");
+                }
             }
-//            //System.exit(0);
-
         } catch (Exception e) {
+            //e.printStackTrace();
             errorLog.add(formatException(e));
             token = "";
         }
