@@ -104,6 +104,9 @@ public class ScraperApp {
             // these are attributes we can extract from the listing
             // e.g. key, title, date, image url, link
             String articleKey = scraper.scrapeArticleKey(html);
+
+            //System.out.println("[ScraperApp][run] articleKey: [" + articleKey + "]");
+
             articleAttr.put("articleKey", articleKey);
             articleAttr.put("articleTitle", scraper.scrapeArticleTitle(html));
             articleAttr.put("articleDate", scraper.scrapeArticleDate(html));
@@ -157,6 +160,9 @@ public class ScraperApp {
 
             List<String> videoLinkUrls = new LinkedList<>();
             for (int j = 0; j < videoLinkTags.size(); j++) {
+
+                //System.out.println("[ScraperApp][run] videoLinkTags.get(j): [" + videoLinkTags.get(j) + "]");
+
                 String videoLink = "";
                 if (videoLinkPagesHtml.size() == videoLinkTags.size()) {
                     // scrape match links from separate pages
