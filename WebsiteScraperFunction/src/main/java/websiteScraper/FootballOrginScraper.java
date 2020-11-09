@@ -154,7 +154,7 @@ public class FootballOrginScraper implements WebsiteScraper {
         String token = "";
         try {
             String t1 = "title=\"";
-            String t2 = "\" ";
+            String t2 = "\"";
             token = scrapeToken(html, t1, t2);
         } catch (Exception e) {
             errorLog.add(formatException(e));
