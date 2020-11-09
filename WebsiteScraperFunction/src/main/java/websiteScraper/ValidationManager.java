@@ -185,9 +185,17 @@ public class ValidationManager {
     }
     //
     public Map<String, String> fixArticle(Map<String, String> article) {
+        fixArticleTitle(article);
         fixVideoLinks(article);
         fixVideoLinksTags(article);
         fixMatchCompetition(article);
+        return article;
+    }
+    //
+    private Map<String, String> fixArticleTitle(Map<String, String> article) {
+        String title = article.get("articleTitle");
+        title = title.replaceAll("&amp;", "&");
+        article.put("articleTitle", title);
         return article;
     }
     //
@@ -226,6 +234,7 @@ public class ValidationManager {
         for(int i = 0; i < videoLinks.length; i=i+2) {
             String link = videoLinks[i].trim();
             String tag = videoLinks[i+1].trim();
+            tag = tag.replaceAll("&amp;", "");
             if(tag.length() > ValidationManager.VIDEOLINK_TAG_MAX_LENGTH) {
                 int truncate = ValidationManager.VIDEOLINK_TAG_MAX_LENGTH - 3;
                 tag = tag.substring(0,truncate) + "...";
