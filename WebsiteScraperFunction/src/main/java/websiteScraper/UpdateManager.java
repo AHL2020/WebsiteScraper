@@ -9,7 +9,7 @@ public class UpdateManager {
     //
     private static UpdateManager instance = null;
     //
-    private final Map<String, String> updateLog;
+    private Map<String, String> updateLog;
     //
     private Map<String, String> existingArticle = null;
     private Map<String, String> newArticle = null;
@@ -48,6 +48,7 @@ public class UpdateManager {
      * @return existingArticle, with updated details
      */
     public Map<String, String> updateArticle() {
+        updateLog = new HashMap<>();
         if(existingArticle == null || newArticle == null) {
             return new HashMap<>();
         }
