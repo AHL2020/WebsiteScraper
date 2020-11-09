@@ -77,7 +77,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             //System.out.println(p1 + "," + p2);
             token = html.substring(p1 + t1len, p2);
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeToken: " + formatException(e));
             token = "";
         }
         return token;
@@ -97,7 +97,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             p = tmp.lastIndexOf(t1);
             token = tmp.substring(p + t1len);
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeArticleKey: " + formatException(e));
             token = "";
         }
         return token;
@@ -111,7 +111,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             String t2 = "\"><";
             token = scrapeToken(html, t1, t2);
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeArticleTitle: " + formatException(e));
             token = "";
         }
         return token;
@@ -125,7 +125,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             String t2 = "/\"";
             token = scrapeToken(html, t1, t2);
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeArticleLinkUrl" + formatException(e));
             token = "";
         }
         return token;
@@ -152,7 +152,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             token = tmp.substring(p1 + t1len, p2);
             //System.out.println(token);
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeMatchCompetition" + formatException(e));
         }
 
         // if that doesn't work, checks the tags
@@ -180,7 +180,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
                 }
             }
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeMatchCompetition: " + formatException(e));
             token = "";
         }
         return token;
@@ -237,8 +237,8 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
                 teams.put("awayTeam", awayTeam.trim());
             }
         } catch(Exception e) {
-            errorLog.add(formatException(e));
-            teams = new HashMap<String, String>();
+            errorLog.add("scrapeTeams: " + formatException(e));
+            teams = new HashMap<>();
         }
         return teams;
     }
@@ -280,7 +280,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             token = token.trim();
             token = DateManager.formatDate(DateManager.extractDate(token));
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeMatchDate: " + formatException(e));
             token = "";
         }
 
@@ -292,7 +292,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
                 token = DateManager.formatDate(DateManager.extractDate(token));
             }
         } catch (Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeMatchDate: " + formatException(e));
             token = "";
         }
         return token;
@@ -311,7 +311,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             token = token.trim();
             token = DateManager.formatDate(DateManager.extractDate(token));
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeArticleDate: " + formatException(e));
             token = "";
         }
         return token;
@@ -331,7 +331,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             int p2 = tmp.indexOf(t2);
             token = tmp.substring(p1 + t1len, p2);
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeStadium" + formatException(e));
             token = "";
         }
         return token.trim();
@@ -351,7 +351,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             int p2 = tmp.indexOf(t2);
             token = tmp.substring(p1 + t1len, p2);
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeReferee" + formatException(e));
             token = "";
         }
         return token.trim();
@@ -371,7 +371,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             token = imageName.trim();
             token = token.replace("www.", "i1.wp.com/");
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeArticleImageUrl" + formatException(e));
             token = "";
         }
         return token;
@@ -398,7 +398,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
                 token = dateParts.get("year");
             }
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeYear: " + formatException(e));
             token = "";
         }
         if(token == null) token = "";
@@ -407,104 +407,127 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
 
     @Override
     public List<String> scrapeHtmlArticle(String html) {
-        List<String> htmlArticleLL = new LinkedList<String>();
+        List<String> htmlArticleLL = new LinkedList<>();
         try {
             Document doc = Jsoup.parse(html);
             Elements articles = doc.select("div.td-block-span4");
-            htmlArticleLL = new LinkedList<String>();
+            htmlArticleLL = new LinkedList<>();
             //System.out.printf("Articles to scrape: [%d] \n", articles.size());
             for (Element article : articles) {
                 htmlArticleLL.add(article.html());
             }
         } catch(Exception e) {
-            errorLog.add(formatException(e));
-            htmlArticleLL = new LinkedList<String>();
+            errorLog.add("scrapeHtmlArticle: " + formatException(e));
+            htmlArticleLL = new LinkedList<>();
         }
         return htmlArticleLL;
     }
 
     @Override
     public List<String> scrapeVideoLinkTags(String html) {
-        List<String> videoLinkTagsLL = new LinkedList<String>();
+        List<String> videoLinkTagsLL = new LinkedList<>();
         try {
-            // find '<h1 class="entry-title">'
-            // find all 'acp_title">'
-            String token = "";
-            String t1 = "<h1 class=\"entry-title\">";
-            int p1 = html.indexOf(t1);
-            String htmlTmp = html.substring(p1);
-            String t2 = "acp_title\">";
-            String t3 = "<";
-            while(htmlTmp.contains(t2)) {
-                p1 = htmlTmp.indexOf(t2) + t2.length();
-                int p2 = htmlTmp.indexOf(t3, p1);
-                token = htmlTmp.substring(p1, p2);
-                videoLinkTagsLL.add(token.trim());
-                htmlTmp = htmlTmp.substring(p2);
+            Document doc = Jsoup.parse(html);
+
+            // if an article only has 1 video link
+            // then we get the tag this way ...
+            String firstTag = "";
+            Elements firstTagList = doc.select("div.acp_title");
+            if(firstTagList.size() > 0) {
+                firstTag = firstTagList.first().html();
+            }
+
+            // if there are multiple video links, we extract them
+            // from the h3 elements
+            Elements tags = doc.select("div.acp_content > h3");
+
+            // for multiple video links, we only use the tags
+            // form the h3 elements
+            if(tags.size() == 0) {
+                videoLinkTagsLL.add(firstTag);
+            } else {
+                for (Element tag : tags) {
+                    videoLinkTagsLL.add(tag.html());
+                }
             }
         } catch(Exception e) {
-            errorLog.add(formatException(e));
-            videoLinkTagsLL = new LinkedList<String>();
+              errorLog.add("scrapeVideoLinkTags: " + formatException(e));
+              videoLinkTagsLL = new LinkedList<>();
         }
+        //System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLinkTags] tags found: [" + videoLinkTagsLL + "]");
         return videoLinkTagsLL;
     }
 
     @Override
+    /**
+     * This method returns the URL's for all video links
+     * for an article.
+     * If there is only 1 video link, or if all video links
+     * are included on the same page, then the method should
+     * return an empty list.
+     *
+     * The FullMatchesAndShows website has changed its design
+     * to have all video links on the same page, so this
+     * method returns an empty list.
+     */
     public List<String> scrapeVideoLinkPageUrls(String html) {
-        List<String> videoLinkPageUrlsLL = new LinkedList<String>();
-        try {
-            // find 'id="item2"><a href="' and then 3, 4, ...
-            String token = "";
-            int i = 2;
-            String t1 = "id=\"item" + i + "\"><a href=\"";
-            String t2 = "\"";
-            int p1 = html.indexOf(t1);
-            String htmlTmp = html.substring(p1);
-            while(htmlTmp.contains(t1)) {
-                p1 = htmlTmp.indexOf(t1) + t1.length();
-                int p2 = htmlTmp.indexOf(t2, p1);
-                token = htmlTmp.substring(p1, p2);
-                videoLinkPageUrlsLL.add(token.trim());
-                htmlTmp = htmlTmp.substring(p2);
-                i = i + 1;
-                t1 = "id=\"item" + i + "\"><a href=\"";
-            }
-        } catch(Exception e) {
-            errorLog.add(formatException(e));
-            videoLinkPageUrlsLL = new LinkedList<String>();
-        }
+        List<String> videoLinkPageUrlsLL = new LinkedList<>();
         return videoLinkPageUrlsLL;
     }
 
     @Override
+    /**
+     * For this scraper, there's no need to use the videoLinkTag
+     * because each page only contains 1 video link
+     *
+     * This will be different on other sites where all video links
+     * are scraped from the same page, so we need to know which
+     * link to scrape - hence we will need the tag
+     *
+     * Update November 2020:
+     * The website has changed structure and all video links are
+     * now on the same page.
+     */
     public String scrapeVideoLink(String html, String videoLinkTag) {
-        /*
-        For this scraper, there's no need to use the videoLinkTag
-        because each page only contains 1 video link
-
-        This will be different on other sites where all video links
-        are scraped from the same page, so we need to know which
-        link to scrape - hence we will need the tag
-         */
         String token = "";
+        boolean truncate = true;
         try {
-            // find 'iframe', then 'src="', end '"'
-            String t1 = "iframe";
-            String t2 = "src=\"";
-            String t3 = "\"";
-            int p1 = html.indexOf(t1);
-            int p2 = html.indexOf(t2, p1);
-            int p3 = html.indexOf(t3, p2+t2.length());
-            token = html.substring(p2+t2.length(), p3).trim();
-
-            // truncate at '?' sign
-            p1 = token.indexOf("?");
-            if(p1 != -1) {
-                token = token.substring(0, p1);
+            Document doc = Jsoup.parse(html);
+            // First, we need to check whether it's an article
+            // that has only 1 video link, or multiple ...
+            boolean hasMultiple = false;
+            Elements els = doc.select("div.acp_content > h3");
+            if(els.size() > 1) {
+                // If the article has multiple video links, find the link
+                // that corresponds to the 'videoLinkTag'
+                int tagIndex = -1;
+                for(int i = 0; i < els.size(); i++) {
+                    Element el = els.get(i);
+                    //System.out.println("tag: " + el.html());
+                    if(el.html().equalsIgnoreCase(videoLinkTag)) {
+                        tagIndex = i;
+                    }
+                }
+                els = doc.select("div.acp_content > iframe");
+                for(int i = 0; i < els.size(); i++) {
+                    if(i == tagIndex) {
+                        token = els.get(i).attr("src");
+                    }
+                }
+            } else {
+                // If the article has only 1 video link ...
+                token = doc.select("div.acp_content > iframe").first().attr("src");
             }
-
+            // truncate at '?' sign
+            if(truncate) {
+                int p1 = token.indexOf("?");
+                if (p1 != -1) {
+                    token = token.substring(0, p1);
+                }
+            }
+            //System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLink] link found: [" + token + "]");
         } catch(Exception e) {
-            errorLog.add(formatException(e));
+            errorLog.add("scrapeVideoLink: " + formatException(e));
             token = "";
         }
         return token;
@@ -520,10 +543,9 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
                 //System.out.printf("[%s] ", tagEl.text().trim());
                 tags.add(tagEl.text().trim());
             }
-            //System.exit(0);
         } catch(Exception e) {
-            errorLog.add(formatException(e));
-            tags = new LinkedList<String>();
+            errorLog.add("scrapeTags: "+formatException(e));
+            tags = new LinkedList<>();
         }
         return tags;
     }
