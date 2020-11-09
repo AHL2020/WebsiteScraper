@@ -198,6 +198,13 @@ public class ConfigManager {
         return clubId;
     }
 
+    /**
+     * This method retrieves the first (1st) record of a club's name
+     * from the config file. It's important the first club names
+     * in the config file are unique
+     * @param clubId
+     * @return
+     */
     public String getClubDefaultNameById(String clubId) {
         return getElementTextValueByXPath("./config/reference-data/clubs/club[@id='" + clubId + "']/names/name[1]");
     }
