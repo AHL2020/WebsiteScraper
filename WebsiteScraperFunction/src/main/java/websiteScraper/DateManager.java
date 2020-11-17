@@ -74,7 +74,7 @@ public class DateManager {
      * Output format: hashmap with 'day', 'month', 'year' as keys
      */
     public static Map<String, String> extractDate(String text) {
-        Map<String, String> dateParts = new HashMap<String, String>();
+        Map<String, String> dateParts = new HashMap<>();
         String dateString = "";
         String regex = "";
         Matcher m = null;
@@ -241,6 +241,10 @@ public class DateManager {
         if(str.equalsIgnoreCase("")) return null;
         Instant instant = null;
         try {
+            int idx = str.indexOf("+");
+            if(idx != -1) {
+                str = str.substring(0, idx) + ".000Z";
+            }
             //System.out.println("str: " + str);
             instant = Instant.parse(str);
             //System.out.println("instant: " + instant);
