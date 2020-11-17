@@ -100,6 +100,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             errorLog.add("scrapeArticleKey: " + formatException(e));
             token = "";
         }
+        System.out.println("[FullMatchesAndShowsScraper][scrapeArticleKey] token: [" + token + "]");
         return token;
     }
 
@@ -424,37 +425,38 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
     }
 
     @Override
+    // todo WIP
     public List<String> scrapeVideoLinkTags(String html) {
         List<String> videoLinkTagsLL = new LinkedList<>();
         try {
             Document doc = Jsoup.parse(html);
-
-            // if an article only has 1 video link
-            // then we get the tag this way ...
-            String firstTag = "";
-            Elements firstTagList = doc.select("div.acp_title");
-            if(firstTagList.size() > 0) {
-                firstTag = firstTagList.first().html();
-            }
-
-            // if there are multiple video links, we extract them
-            // from the h3 elements
-            Elements tags = doc.select("div.acp_content > h3");
-
-            // for multiple video links, we only use the tags
-            // form the h3 elements
-            if(tags.size() == 0) {
-                videoLinkTagsLL.add(firstTag);
-            } else {
-                for (Element tag : tags) {
-                    videoLinkTagsLL.add(tag.html());
+            Elements els = doc.select("div.acp_title");
+            boolean hasMultiple = html.contains("<h3>");
+            if(!hasMultiple && els.size() == 1) {
+                //System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLinkTags] one tag");
+                videoLinkTagsLL.add(doc.selectFirst("div.acp_title").html().replace("&amp;", "&"));
+            } else if(hasMultiple) {
+                //System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLinkTags] multiple tags");
+                int idx = 0;
+                while(html.indexOf("<h3>", idx) != -1) {
+                    idx = html.indexOf("<h3>", idx);
+                    int idx2 = html.indexOf("</h3>", idx);
+                    if (idx < idx2 && (idx2 - idx) < 35) {
+                        String token = html.substring(idx + "<h3>".length(), idx2).trim().replaceAll("&amp;", "&");
+                        videoLinkTagsLL.add(token);
+                    } else {
+                        System.out.printf("[FullMatchesAndShowsScraper][scrapeVideoLinkTags] error parsing multiple tags: idx[%d] idx2[%d] \n", idx, idx2);
+                    }
+                    idx = idx2;
                 }
+            } else {
+                System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLinkTags] error scraping video link tags");
             }
         } catch(Exception e) {
               errorLog.add("scrapeVideoLinkTags: " + formatException(e));
               videoLinkTagsLL = new LinkedList<>();
         }
-        //System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLinkTags] tags found: [" + videoLinkTagsLL + "]");
+        System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLinkTags] tags found: [" + videoLinkTagsLL + "]");
         return videoLinkTagsLL;
     }
 
@@ -495,25 +497,24 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
             Document doc = Jsoup.parse(html);
             // First, we need to check whether it's an article
             // that has only 1 video link, or multiple ...
-            boolean hasMultiple = false;
-            Elements els = doc.select("div.acp_content > h3");
-            if(els.size() > 1) {
-                // If the article has multiple video links, find the link
-                // that corresponds to the 'videoLinkTag'
-                int tagIndex = -1;
-                for(int i = 0; i < els.size(); i++) {
-                    Element el = els.get(i);
-                    //System.out.println("tag: " + el.html());
-                    if(el.html().equalsIgnoreCase(videoLinkTag)) {
-                        tagIndex = i;
-                    }
+            String tag = "<h3>" + videoLinkTag;
+            //System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLink] looking for tag: [" + tag + "]");
+            boolean hasMultiple = html.contains(tag);
+            //Elements els = doc.select("div.acp_content > h3");
+            //System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLink] hasMultiple: [" + hasMultiple + "]");
+            if(hasMultiple) {
+                // If the article has multiple video links
+                int idx = html.indexOf(tag);
+                idx = html.indexOf("iframe", idx);
+                idx = html.indexOf("src=\"", idx);
+                int idx2 = html.indexOf("\"", idx + "src=\"".length() + 1);
+                //System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLink] idx: [" + idx + "], idx2: [" + idx2 + "]");
+                if(idx < idx2 && (idx2 - idx) < 120) {
+                    token = html.substring(idx + "src=\"".length(), idx2);
+                } else {
+                    System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLink] error parsing video link. idx: [" + idx + "], idx2: [" + idx2 + "]");
                 }
-                els = doc.select("div.acp_content > iframe");
-                for(int i = 0; i < els.size(); i++) {
-                    if(i == tagIndex) {
-                        token = els.get(i).attr("src");
-                    }
-                }
+                //System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLink] token: [" + token + "]");
             } else {
                 // If the article has only 1 video link ...
                 token = doc.select("div.acp_content > iframe").first().attr("src");
@@ -525,7 +526,7 @@ public class FullMatchesAndShowsScraper implements WebsiteScraper {
                     token = token.substring(0, p1);
                 }
             }
-            //System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLink] link found: [" + token + "]");
+            System.out.println("[FullMatchesAndShowsScraper][scrapeVideoLink] video link: [" + token + "]");
         } catch(Exception e) {
             errorLog.add("scrapeVideoLink: " + formatException(e));
             token = "";
