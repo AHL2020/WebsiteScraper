@@ -47,6 +47,9 @@ public class LegacyScraperManager {
                 , new ScraperSession(new FullMatchesAndShowsScraper()
                     , "FullMatchesAndShows"
                     , new Anonymiser(configManager).setAttributesToAnonymise(new String[]{"articleTitle", "articleImageUrl"}))
+                , new ScraperSession(new HDMatchesScraper()
+                    , "HDMatches"
+                    , new Anonymiser(configManager).setAttributesToAnonymise(new String[]{"articleTitle", "articleImageUrl"}))
         };
         ValidationManager validationManager = ValidationManager.getInstance();
         ComparisonManager comparisonManager = ComparisonManager.getInstance(configManager);
