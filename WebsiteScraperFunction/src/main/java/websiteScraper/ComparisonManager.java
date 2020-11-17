@@ -164,31 +164,50 @@ public class ComparisonManager {
                 && !isEmpty(article2HomeTeam) && !isEmpty(article2AwayTeam);
         boolean hasClubIds = !isEmpty(article1HomeTeamClubId) && !isEmpty(article1AwayTeamClubId)
                 && !isEmpty(article2HomeTeamClubId) && !isEmpty(article2AwayTeamClubId);
-        boolean isDefault = isDefault(article1) && isDefault(article2);
+        boolean isDefaultArticleType = isDefaultArticleType(article1) && isDefaultArticleType(article2);
         boolean hasCompetition = !isEmpty(article1Competition) && !isEmpty(article2Competition);
         boolean equalsArticleKey = article1Key.equals(article2Key);
         boolean equalsCompetition = hasCompetition && article1Competition.equals(article2Competition);
-        boolean equalsHomeTeam = hasTeams && hasClubIds && article1HomeTeamClubId.equals(article2HomeTeamClubId);
-        boolean equalsAwayTeam = hasTeams && hasClubIds && article1AwayTeamClubId.equals(article2AwayTeamClubId);
+
+        boolean teamsEqualByClubId = hasTeams && hasClubIds
+                && article1HomeTeamClubId.equals(article2HomeTeamClubId)
+                && article1AwayTeamClubId.equals(article2AwayTeamClubId);
+
+        boolean teamsEqualByName = equalsTeamsNames(article1, article2);
+
+        boolean equalsTeams = teamsEqualByClubId || teamsEqualByName;
+
+        //boolean equalsHomeTeam = hasTeams && hasClubIds && article1HomeTeamClubId.equals(article2HomeTeamClubId);
+        //boolean equalsAwayTeam = hasTeams && hasClubIds && article1AwayTeamClubId.equals(article2AwayTeamClubId);
         long daysDiff = Math.abs(article1Instant.until(article2Instant, ChronoUnit.DAYS));
         //
         // (4) Perform comparison
         //
         if(equals && !equalsArticleKey) {
-            if(equalsCompetition && equalsHomeTeam && equalsAwayTeam && daysDiff < 4 && commonTypes > 0) {
+            if(equalsCompetition && equalsTeams && daysDiff < 4 && commonTypes > 0) {
                 // could be a match, highlights, pre/post show, ...
                 // problem: will match pre/post show with different manager names
                 // todo: need a check for whether it's from the same source
-            } else if(equalsHomeTeam && equalsAwayTeam && daysDiff < 4 && commonTypes > 0) {
+            } else if(equalsTeams && daysDiff < 4 && commonTypes > 0) {
                 // could be an FA Cup match, a match that has no Competition flag and that
                 // would normally be in the 'Misc' category
-            } else if(!isDefault && !hasTeams && equalsCompetition && daysDiff < 4 && commonTypes > 0) {
+            } else if(!isDefaultArticleType && !hasTeams && equalsCompetition && daysDiff < 4 && commonTypes > 0) {
                 // could be the highlights show
             } else {
                 equals = false;
             }
         }
         return equals;
+    }
+    //
+    private boolean equalsTeamsNames(Map<String, String> article1, Map<String, String> article2) {
+        String a1matchHomeTeam = article1.get("matchHomeTeam");
+        String a1matchAwayTeam = article1.get("matchAwayTeam");
+        String a2matchHomeTeam = article2.get("matchHomeTeam");
+        String a2matchAwayTeam = article2.get("matchAwayTeam");
+        boolean equalsHomeTeam = a1matchHomeTeam.equalsIgnoreCase(a2matchHomeTeam);
+        boolean equalsAwayTeam = a1matchAwayTeam.equalsIgnoreCase(a2matchAwayTeam);
+        return equalsHomeTeam && equalsAwayTeam;
     }
     //
     public boolean isEmpty(String s) {
@@ -213,7 +232,7 @@ public class ComparisonManager {
         return false;
     }
     //
-    public boolean isDefault(Map<String, String> article) {
+    public boolean isDefaultArticleType(Map<String, String> article) {
         Map<String, String> types = detectArticleTypes(article);
         if(types.keySet().contains("default")) return true;
         return false;
